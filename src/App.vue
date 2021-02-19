@@ -1,15 +1,18 @@
 <!--
 @Date:   2021-02-17T11:01:49+00:00
-@Last modified time: 2021-02-17T11:33:48+00:00
+@Last modified time: 2021-02-19T16:16:57+00:00
 -->
 <template>
 <div>
   <NavBar />
-  <b-container>
-    <b-row>
+
+  <div class="content">
+    <b-container>
+
       <router-view />
-    </b-row>
-  </b-container>
+
+    </b-container>
+  </div>
 </div>
 </template>
 
@@ -25,5 +28,7 @@ export default {
 </script>
 
 <style>
-
+.content {
+  padding: 2rem;
+}
 </style>
