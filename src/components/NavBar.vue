@@ -1,10 +1,10 @@
 <!--
 @Date:   2021-02-17T11:32:26+00:00
-@Last modified time: 2021-02-18T14:01:33+00:00
+@Last modified time: 2021-02-20T16:14:59+00:00
 -->
 <template>
 <div>
-  <b-navbar type="dark" variant="dark">
+  <b-navbar type="dark" variant="primary">
     <b-navbar-nav>
       <b-nav-item to="/">Home</b-nav-item>
       <b-nav-item to="/courses">Courses</b-nav-item>

@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T11:01:49+00:00
-@Last modified time: 2021-02-19T16:16:57+00:00
+@Last modified time: 2021-02-20T16:40:09+00:00
 -->
 <template>
 <div>
@@ -28,7 +28,14 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
 .content {
-  padding: 2rem;
+  padding: 8rem;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Roboto", sans-serif;
+}
+
 </style>

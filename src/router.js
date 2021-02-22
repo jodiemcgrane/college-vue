@@ -1,11 +1,12 @@
 /**
  * @Date:   2021-02-17T11:08:57+00:00
- * @Last modified time: 2021-02-17T15:56:38+00:00
+ * @Last modified time: 2021-02-20T16:43:33+00:00
  */
 import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from './views/Home'
+import Register from './views/Register'
 
 import CoursesIndex from './views/courses/Index'
 // import CoursesShow from './views/courses/Show'
@@ -22,6 +23,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register
     },
     {
       path: '/courses',

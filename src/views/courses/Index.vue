@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-02-18T14:06:15+00:00
+@Last modified time: 2021-02-22T10:41:12+00:00
 -->
 <template>
 <div>
@@ -14,10 +14,11 @@ import axios from 'axios';
 export default {
   name: 'CourseIndex',
   components: {
+
   },
   data() {
     return {
-
+      courses: []
     }
   },
   // mounted() {
@@ -25,7 +26,7 @@ export default {
   // },
   methods: {
     getCourses() {
-      let token = localStorage.getItem('token')
+      let token = localStorage.getItem('token');
 
       axios.get('http://college.api:8000/api/courses', {
         headers: { Authorization: "Bearer " + token }
@@ -38,7 +39,7 @@ export default {
         console.log(error)
         console.log(error.response.data)
       })
-    },
+    }
   },
 }
 </script>
