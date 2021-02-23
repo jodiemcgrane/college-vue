@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-20T16:42:32+00:00
-@Last modified time: 2021-02-20T17:36:04+00:00
+@Last modified time: 2021-02-23T10:20:29+00:00
 -->
 <template>
   <b-row class="justify-content-center">
@@ -30,7 +30,7 @@
                 <p>Already a member? <strong><router-link :to="{ name: 'home'}">Sign in</router-link></strong></p>
               </div>
 
-              <b-button type="submit" @click="register()" pill variant="primary">Register</b-button>
+              <b-button @click="register()" pill variant="primary">Register</b-button>
 
             </b-form>
           </div>
@@ -69,6 +69,10 @@ export default {
       })
       .then(response => {
         console.log(response.data);
+        localStorage.setItem('token', response.data.token);
+        this.$router.replace({
+          name: 'home'
+        });
       })
       .catch(error => {
         console.log(error)

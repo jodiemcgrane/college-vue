@@ -1,12 +1,12 @@
 <!--
 @Date:   2021-02-19T14:03:38+00:00
-@Last modified time: 2021-02-22T10:27:50+00:00
+@Last modified time: 2021-02-23T10:18:50+00:00
 -->
 <template>
 <b-row>
 
   <b-col md="6 order-md-2">
-    <b-img src="/assets/login-image.png" class="img-fluid"></b-img>
+    <img src="../assets/login-image.jpg" class="img-fluid">
   </b-col>
 
   <b-col md="6 contents">
@@ -28,13 +28,19 @@
           </b-form-group>
 
           <div class="d-flex mb-5 align-items-center">
+
             <b-form-checkbox>Remember Me</b-form-checkbox>
             <span class="ml-auto">
               <a href="#">Forgot Password</a>
             </span>
           </div>
-
           <b-button @click="login()" pill variant="primary">Login</b-button>
+
+          <div class="justify-content-center mt-5">
+            <p>Not a member? <strong>
+                <router-link :to="{ name: 'register'}">Register now</router-link>
+              </strong></p>
+          </div>
         </b-form>
 
       </b-col>
@@ -68,7 +74,9 @@ export default {
         .then(response => {
           console.log(response.data);
           localStorage.setItem('token', response.data.token);
-          this.$router.replace({ name: 'courses_index'});
+          this.$router.replace({
+            name: 'home'
+          });
         })
         .catch(error => {
           console.log(error)

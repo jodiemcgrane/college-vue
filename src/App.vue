@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T11:01:49+00:00
-@Last modified time: 2021-02-20T16:40:09+00:00
+@Last modified time: 2021-02-23T09:33:59+00:00
 -->
 <template>
 <div>
@@ -37,5 +37,4 @@ export default {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Roboto", sans-serif;
 }
-
 </style>

@@ -1,10 +1,11 @@
 /**
  * @Date:   2021-02-17T11:08:57+00:00
- * @Last modified time: 2021-02-20T16:43:33+00:00
+ * @Last modified time: 2021-02-23T09:27:48+00:00
  */
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import Welcome from './views/Welcome'
 import Home from './views/Home'
 import Register from './views/Register'
 
@@ -21,6 +22,11 @@ export default new Router({
     //arrays of routes
     {
       path: '/',
+      name: 'welcome',
+      component: Welcome
+    },
+    {
+      path: '/home',
       name: 'home',
       component: Home
     },
