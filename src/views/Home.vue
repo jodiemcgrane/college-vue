@@ -1,10 +1,75 @@
 <!--
 @Date:   2021-02-17T11:10:21+00:00
-@Last modified time: 2021-02-23T09:30:48+00:00
+@Last modified time: 2021-03-01T13:48:42+00:00
 -->
 <template>
 <div>
-  <p>Home page</p>
+  <b-row class="justify-content-center">
+
+    <b-col class="mt-3" md="8">
+      <b-card>
+        <div class="card-horizontal">
+          <b-col md="6">
+            <b-card-text>
+              <h3>Courses</h3>
+              <p>Here is all the courses currently in the college system. Select below to view all courses.</p>
+              <div class="text-center">
+                <b-button to="/courses" class="view-button mt-3" pill variant="primary" btn-sm>View All</b-button>
+              </div>
+            </b-card-text>
+          </b-col>
+
+          <b-col md="6">
+            <div class="img-square-wrapper">
+              <img src="../assets/courses-image.jpg" class="img-fluid">
+            </div>
+          </b-col>
+        </div>
+      </b-card>
+    </b-col>
+
+    <b-col class="mt-3" md="8">
+      <b-card>
+        <div class="card-horizontal">
+          <b-card-text>
+            <h3>Enrolments</h3>
+            <p>Here is all the enrolments currently in the college system. Select below to view all enrolments.</p>
+            <div class="text-center">
+              <b-button to="/enrolments" class="view-button mt-3" pill variant="primary" btn-sm>View All</b-button>
+            </div>
+          </b-card-text>
+
+
+          <b-col md="6">
+            <div class="img-square-wrapper">
+              <img src="../assets/enrolments-image.jpg" class="img-fluid">
+            </div>
+          </b-col>
+        </div>
+      </b-card>
+    </b-col>
+
+    <b-col class="mt-3" md="8">
+      <b-card>
+        <div class="card-horizontal">
+          <b-card-text>
+            <h3>Lecturers</h3>
+            <p>Here is all the lecturers currently in the college system. Select below to view all lecturers.</p>
+            <div class="text-center">
+              <b-button class="view-button mt-3" pill variant="primary" btn-sm>View All</b-button>
+            </div>
+          </b-card-text>
+
+          <b-col md="6">
+            <div class="img-square-wrapper">
+              <img src="../assets/lecturers-image.jpg" class="img-fluid">
+            </div>
+          </b-col>
+        </div>
+      </b-card>
+    </b-col>
+
+  </b-row>
 </div>
 </template>
 
@@ -19,5 +84,13 @@ export default {
 </script>
 
 <style>
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
 
+.view-button {
+  height: 38px;
+  width: 35%;
+}
 </style>

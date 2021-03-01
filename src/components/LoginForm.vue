@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-19T14:03:38+00:00
-@Last modified time: 2021-02-23T10:18:50+00:00
+@Last modified time: 2021-03-01T11:57:01+00:00
 -->
 <template>
 <b-row>
@@ -34,7 +34,7 @@
               <a href="#">Forgot Password</a>
             </span>
           </div>
-          <b-button @click="login()" pill variant="primary">Login</b-button>
+          <b-button class="login-button" @click="login()" pill variant="primary">Login</b-button>
 
           <div class="justify-content-center mt-5">
             <p>Not a member? <strong>
@@ -112,7 +112,7 @@ img {
   margin-bottom: 1.5rem;
 }
 
-.btn {
+.login-button {
   height: 54px;
   width: 100%;
 }
