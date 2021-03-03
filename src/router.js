@@ -1,6 +1,6 @@
 /**
  * @Date:   2021-02-17T11:08:57+00:00
- * @Last modified time: 2021-02-26T19:50:13+00:00
+ * @Last modified time: 2021-03-02T10:00:39+00:00
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -10,8 +10,9 @@ import Home from './views/Home'
 import Register from './views/Register'
 
 import CoursesIndex from './views/courses/Index'
-// import CoursesShow from './views/courses/Show'
-// import CoursesEdit from './views/courses/Edit'
+import CoursesCreate from './views/courses/Create'
+import CoursesShow from './views/courses/Show'
+import CoursesEdit from './views/courses/Edit'
 
 import EnrolmentsIndex from './views/enrolments/Index'
 
@@ -43,21 +44,26 @@ export default new Router({
       name: 'courses_index',
       component: CoursesIndex
     },
+    {
+      path: '/courses',
+      name: 'courses_create',
+      component: CoursesCreate
+    },
     //enrolments routes
     {
       path: '/enrolments',
       name: 'enrolments_index',
       component: EnrolmentsIndex
     },
-    // {
-    //   path: '/courses/show',
-    //   name: 'courses_show',
-    //   component: CoursesShow
-    // },
-    // {
-    //   path: '/courses/edit',
-    //   name: 'courses_edit',
-    //   component: CoursesEdit
-    // },
+    {
+      path: '/courses/:id',
+      name: 'courses_show',
+      component: CoursesShow
+    },
+    {
+      path: '/courses/:id/edit',
+      name: 'courses_edit',
+      component: CoursesEdit
+    },
   ]
 });

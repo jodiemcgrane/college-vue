@@ -1,11 +1,15 @@
 <!--
 @Date:   2021-02-26T19:48:08+00:00
-@Last modified time: 2021-03-01T15:00:20+00:00
+@Last modified time: 2021-03-02T09:56:32+00:00
 -->
 <template>
 <div class="enrolments">
   <b-row>
     <b-table head-variant="light" responsive hover :items="enrolments" :fields="fields">
+      <!-- for courses show -->
+      <template #cell(title)="data">
+        {{ data.item.course_id }}
+      </template>
     </b-table>
   </b-row>
 </div>
@@ -21,8 +25,15 @@ export default {
   },
   data() {
     return {
-      fields: ['id', 'date', 'time', 'status', 'course_id', 'lecturer_id', 'Actions'],
-      items: [],
+      fields: [
+        'id',
+        'date',
+        'time',
+        'status',
+        'course_id',
+        'lecturer_id',
+        'Actions'
+      ],
       enrolments: []
     }
   },

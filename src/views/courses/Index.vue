@@ -1,30 +1,15 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-02-26T21:07:54+00:00
+@Last modified time: 2021-03-03T14:02:07+00:00
 -->
 <template>
 <div class="courses">
-  <b-row>
-    <b-col md="6">
-      <b-card class="card-1 mb-3" v-for="course in courses" :key="course.id">
 
-        <h4 class="text-left mt-3 mb-3">
-          {{course.title}}
-        </h4>
-        <p><strong>Code: </strong>{{ course.code }}</p>
-        <p class="mt-3 mb-3">{{ course.description }}</p>
-
-        <div class="d-flex">
-          <p><strong>Level: </strong>{{ course.level }}</p>
-          <span class="ml-auto">
-            <p><strong>Points: </strong>{{ course.points }}</p>
-          </span>
-        </div>
-        <p><strong>Enrolments: <router-link :to="{ name: 'enrolments_index'}">View All</router-link></strong></p>
-
-      </b-card>
-    </b-col>
-  </b-row>
+  <b-table striped hover :items="courses" :fields="fields">
+    <template #cell(title)="data">
+      <router-link :to="{ name: 'courses_show', params: { id: data.item.id }}">{{ data.item.title }}</router-link>
+    </template>
+  </b-table>
 
   <b-table striped hover :courses="courses"></b-table>
 </div>
@@ -40,6 +25,9 @@ export default {
   },
   data() {
     return {
+      fields: [
+        'title', 'code', 'points', 'level'
+      ],
       courses: []
     }
   },
