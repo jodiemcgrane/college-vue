@@ -1,10 +1,11 @@
 <!--
 @Date:   2021-02-17T11:10:21+00:00
-@Last modified time: 2021-03-01T13:48:42+00:00
+@Last modified time: 2021-03-06T11:42:18+00:00
 -->
 <template>
 <div>
   <b-row class="justify-content-center">
+    <!-- {{ loggedIn }} -->
 
     <b-col class="mt-3" md="8">
       <b-card>
@@ -14,7 +15,7 @@
               <h3>Courses</h3>
               <p>Here is all the courses currently in the college system. Select below to view all courses.</p>
               <div class="text-center">
-                <b-button to="/courses" class="view-button mt-3" pill variant="primary" btn-sm>View All</b-button>
+                <b-button to="/courses" class="view-all-button mt-3" pill variant="primary" btn-sm>View All</b-button>
               </div>
             </b-card-text>
           </b-col>
@@ -35,7 +36,7 @@
             <h3>Enrolments</h3>
             <p>Here is all the enrolments currently in the college system. Select below to view all enrolments.</p>
             <div class="text-center">
-              <b-button to="/enrolments" class="view-button mt-3" pill variant="primary" btn-sm>View All</b-button>
+              <b-button to="/enrolments" class="view-all-button mt-3" pill variant="primary" btn-sm>View All</b-button>
             </div>
           </b-card-text>
 
@@ -56,7 +57,7 @@
             <h3>Lecturers</h3>
             <p>Here is all the lecturers currently in the college system. Select below to view all lecturers.</p>
             <div class="text-center">
-              <b-button class="view-button mt-3" pill variant="primary" btn-sm>View All</b-button>
+              <b-button class="view-all-button mt-3" pill variant="primary" btn-sm>View All</b-button>
             </div>
           </b-card-text>
 
@@ -89,7 +90,7 @@ export default {
   flex: 1 1 auto;
 }
 
-.view-button {
+.view-all-button {
   height: 38px;
   width: 35%;
 }

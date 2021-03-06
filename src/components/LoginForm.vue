@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-19T14:03:38+00:00
-@Last modified time: 2021-03-01T11:57:01+00:00
+@Last modified time: 2021-03-04T12:53:13+00:00
 -->
 <template>
 <b-row>
@@ -74,6 +74,7 @@ export default {
         .then(response => {
           console.log(response.data);
           localStorage.setItem('token', response.data.token);
+          this.$emit('login');
           this.$router.replace({
             name: 'home'
           });
