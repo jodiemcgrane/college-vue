@@ -1,9 +1,9 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-03-03T13:57:57+00:00
+@Last modified time: 2021-03-08T12:13:56+00:00
 -->
 <template>
-<div>
+<div class="enrolments-show">
   <h4>Title: </h4> {{ course.title }} <br>
   <h4>Code: </h4> {{ course.code }} <br>
   <h4>Description: </h4> {{ course.description }} <br>

@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T11:32:26+00:00
-@Last modified time: 2021-03-04T14:03:20+00:00
+@Last modified time: 2021-03-08T12:18:22+00:00
 -->
 <template>
 <div>
@@ -10,6 +10,7 @@
       <b-nav-item to="/courses">Courses</b-nav-item>
       <b-nav-item to="/enrolments">Enrolments</b-nav-item>
       <!-- <b-nav-item :to={name: 'enrolments_index'}>Enrolments</b-nav-item> -->
+      <b-nav-item to="/lecturers">Lecturers</b-nav-item>
     </b-navbar-nav>
 
     <b-navbar-nav class="ml-auto">
