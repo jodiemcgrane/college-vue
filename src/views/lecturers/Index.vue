@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-08T12:13:19+00:00
-@Last modified time: 2021-03-08T12:24:09+00:00
+@Last modified time: 2021-03-08T20:56:44+00:00
 -->
 <template>
   <div class="lecturers-index">
@@ -59,8 +59,8 @@ export default {
         'actions'
       ],
       currentPage: 1,
-      perPage: 5,
-      pageOptions: [5, 10, 15, 20, 25],
+      perPage: 10,
+      pageOptions: [ 10, 20, 30],
       lecturers: [],
     }
   },

@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T11:10:21+00:00
-@Last modified time: 2021-03-06T11:42:18+00:00
+@Last modified time: 2021-03-08T18:42:54+00:00
 -->
 <template>
 <div>
@@ -93,5 +93,19 @@ export default {
 .view-all-button {
   height: 38px;
   width: 35%;
+}
+
+.card {
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+  transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+  padding: 14px 80px 18px 36px;
+  cursor: pointer;
+}
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .10), 0 4px 8px rgba(0, 0, 0, .06);
+  border-color: #0275d8;
 }
 </style>

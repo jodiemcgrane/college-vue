@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-19T14:03:38+00:00
-@Last modified time: 2021-03-04T12:53:13+00:00
+@Last modified time: 2021-03-08T20:34:46+00:00
 -->
 <template>
 <b-row>
@@ -28,12 +28,12 @@
           </b-form-group>
 
           <div class="d-flex mb-5 align-items-center">
-
             <b-form-checkbox>Remember Me</b-form-checkbox>
             <span class="ml-auto">
               <a href="#">Forgot Password</a>
             </span>
           </div>
+
           <b-button class="login-button" @click="login()" pill variant="primary">Login</b-button>
 
           <div class="justify-content-center mt-5">
@@ -88,7 +88,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 p {
   color: #b3b3b3;
   font-weight: 300;
