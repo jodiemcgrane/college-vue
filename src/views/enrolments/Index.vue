@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-26T19:48:08+00:00
-@Last modified time: 2021-03-06T13:28:55+00:00
+@Last modified time: 2021-03-08T11:52:18+00:00
 -->
 <template>
 <div class="enrolments">
@@ -13,7 +13,7 @@
     </b-col>
   </b-row>
 
-    <b-table hover :items="enrolments" :fields="fields" responsive="sm" :current-page="currentPage" :per-page="perPage">
+    <b-table id="enrolments-table" hover :items="enrolments" :fields="fields" :per-page="perPage" :current-page="currentPage" responsive="sm">
       <template #cell(actions)="data">
 
         <router-link :to="{ name: 'enrolments_show', params: { id: data.item.id }}">
@@ -32,6 +32,11 @@
 
       </template>
     </b-table>
+
+    <b-row class="justify-content-center">
+      <b-pagination v-model="currentPage" :total-rows="totalRows" :per-page="perPage" aria-controls="courses-table"></b-pagination>
+    </b-row>
+
 </div>
 </template>
 
@@ -80,6 +85,11 @@ export default {
           console.log(error)
           console.log(error.response.data)
         })
+    }
+  },
+  computed: {
+    totalRows() {
+      return this.enrolments.length
     }
   },
 }

@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-03-06T13:23:54+00:00
+@Last modified time: 2021-03-08T11:52:49+00:00
 -->
 <template>
 <div class="courses">
@@ -13,7 +13,7 @@
     </b-col>
   </b-row>
 
-  <b-table id="courses-table" hover :items="courses" :fields="fields" responsive="sm" :current-page="currentPage" :per-page="perPage">
+  <b-table id="courses-table" hover :items="courses" :fields="fields" :per-page="perPage" :current-page="currentPage" responsive="sm">
     <template #cell(actions)="data">
 
       <router-link :to="{ name: 'courses_show', params: { id: data.item.id }}">
@@ -33,9 +33,9 @@
     </template>
   </b-table>
 
-<b-row class="justify-content-center">
-    <b-pagination :per-page="perPage" v-model="currentPage" class="my-0" aria-controls="courses-table" />
-</b-row>
+  <b-row class="justify-content-center">
+    <b-pagination v-model="currentPage" :total-rows="totalRows" :per-page="perPage" aria-controls="courses-table"></b-pagination>
+  </b-row>
 
 </div>
 </template>
@@ -94,34 +94,15 @@ export default {
         })
     },
   },
+  computed: {
+    totalRows() {
+      return this.courses.length
+    }
+  },
 }
 </script>
 
 <style>
-.card {
-  border-radius: 4px;
-  background: #fff;
-  box-shadow: 0 6px 8px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
-  transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
-  padding: 14px 80px 18px 36px;
-  cursor: pointer;
-}
-
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, .10), 0 4px 8px rgba(0, 0, 0, .06);
-  border-color: #0275d8;
-}
-
-.card h4 {
-  font-weight: 600;
-}
-
-.card-1 {
-  background-repeat: no-repeat;
-  background-position: right;
-  background-size: 80px;
-}
 
 table.table-hover tbody tr:hover {
   background-color: #cfe2ff;
