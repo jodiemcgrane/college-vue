@@ -1,13 +1,13 @@
 <!--
 @Date:   2021-02-26T19:48:08+00:00
-@Last modified time: 2021-03-08T11:52:18+00:00
+@Last modified time: 2021-03-10T10:02:37+00:00
 -->
 <template>
 <div class="enrolments">
 
   <b-row>
     <b-col md="6" class="my-1">
-      <b-form-group horizontal label="Per page" class="mb-0">
+      <b-form-group>
         <b-form-select :options="pageOptions" v-model="perPage" />
       </b-form-group>
     </b-col>

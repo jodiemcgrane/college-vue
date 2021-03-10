@@ -1,9 +1,9 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-03-08T19:21:04+00:00
+@Last modified time: 2021-03-10T10:01:34+00:00
 -->
 <template>
-<div class="courses">
+<div class="courses-index">
 
   <b-row>
     <b-col md="6" class="my-1">
@@ -105,7 +105,7 @@ export default {
     searchCourse() {
       let token = localStorage.getItem('token');
 
-      axios.get('http://college.api:8000/api/courses/?search='+this.keyword, {
+      axios.get('http://college.api:8000/api/courses/?search=' + this.keyword, {
           headers: {
             Authorization: "Bearer " + token
           }
