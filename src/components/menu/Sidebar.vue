@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-10T10:46:21+00:00
-@Last modified time: 2021-03-10T11:20:13+00:00
+@Last modified time: 2021-03-10T13:27:37+00:00
 -->
 <template>
 <div class="sidebar">
@@ -55,7 +55,7 @@ export default {
 
 .sidebar-panel {
   overflow-y: auto;
-  background-color: #0275d8;
+  background-color: #007bff;
   position: fixed;
   left: 0;
   top: 0;

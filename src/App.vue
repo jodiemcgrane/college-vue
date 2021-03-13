@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T11:01:49+00:00
-@Last modified time: 2021-03-04T12:55:43+00:00
+@Last modified time: 2021-03-13T17:23:05+00:00
 -->
 <template>
 <div>
@@ -58,5 +58,11 @@ export default {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Roboto", sans-serif;
+  letter-spacing: 0.5px;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 0.5px;
 }
 </style>

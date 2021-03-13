@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-03-10T10:01:34+00:00
+@Last modified time: 2021-03-10T13:29:23+00:00
 -->
 <template>
 <div class="courses-index">
@@ -131,6 +131,6 @@ export default {
 
 <style>
 table.table-hover tbody tr:hover {
-  background-color: #cfe2ff;
+  background-color: #B6D9FF;
 }
 </style>
