@@ -1,0 +1,90 @@
+<!--
+@Date:   2021-03-13T17:29:27+00:00
+@Last modified time: 2021-03-13T19:04:52+00:00
+-->
+<template>
+<div>
+  <b-modal id="modal1" ref="modal1" content-class="shadow" v-bind:hide-footer="true">
+    <p>Add new Course</p>
+
+    <b-form>
+      <b-form-group label="Title">
+        <b-form-input type="text" v-model="form.title" />
+      </b-form-group>
+
+      <b-form-group label="Code">
+        <b-form-input type="text" v-model="form.code" />
+      </b-form-group>
+
+      <b-form-group label="Description">
+        <b-form-input type="text" v-model="form.description" />
+      </b-form-group>
+
+
+      <b-form-group label="Points">
+        <b-form-input type="text" v-model="form.points" />
+      </b-form-group>
+
+      <b-form-group label="Level">
+        <b-form-input type="text" v-model="form.level" />
+      </b-form-group>
+    </b-form>
+
+    <template>
+      <b-button @click="createCourse()" variant="success">Submit</b-button>
+    </template>
+
+  </b-modal>
+</div>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  name: 'CreateCourseModal',
+  components: {
+
+  },
+  data() {
+    return {
+      form: {
+        title: "",
+        code: "",
+        description: "",
+        points: "",
+        level: ""
+      }
+    }
+  },
+  methods: {
+    show() {
+      this.$refs.modal1.show();
+    },
+    createCourse() {
+      let token = localStorage.getItem('token');
+      axios.post('http://college.api:8000/api/courses', {
+          title: this.form.title,
+          code: this.form.code,
+          description: this.form.description,
+          points: this.form.points,
+          level: this.form.points
+        }, {
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        })
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error)
+          console.log(error.response.data)
+        })
+    }
+  }
+}
+</script>
+
+<style lang="css" scoped>
+</style>

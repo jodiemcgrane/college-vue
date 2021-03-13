@@ -1,9 +1,15 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-03-10T13:29:23+00:00
+@Last modified time: 2021-03-13T18:34:29+00:00
 -->
 <template>
 <div class="courses-index">
+
+  <b-row>
+    <b-button @click="showModal()" pill variant="primary">Create</b-button>
+  </b-row>
+
+  <CreateCourseModal ref="CreateCourseModal" />
 
   <b-row>
     <b-col md="6" class="my-1">
@@ -48,12 +54,13 @@
 </template>
 
 <script>
+import CreateCourseModal from '@/components/CreateCourseModal.vue'
 import axios from 'axios';
 
 export default {
   name: 'CoursesIndex',
   components: {
-
+    CreateCourseModal,
   },
   data() {
     return {
@@ -74,7 +81,6 @@ export default {
     }
   },
   mounted() {
-
     if (this.loggedIn) {
       this.getCourses();
     } else {
@@ -85,6 +91,9 @@ export default {
     loggedIn: Boolean,
   },
   methods: {
+    showModal() {
+      this.$refs.CreateCourseModal.show();
+    },
     getCourses() {
       let token = localStorage.getItem('token');
 
