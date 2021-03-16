@@ -1,6 +1,6 @@
 /**
  * @Date:   2021-02-17T11:08:57+00:00
- * @Last modified time: 2021-03-08T12:17:32+00:00
+ * @Last modified time: 2021-03-16T18:59:37+00:00
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -10,7 +10,6 @@ import Home from './views/Home'
 import Register from './views/Register'
 
 import CoursesIndex from './views/courses/Index'
-import CoursesCreate from './views/courses/Create'
 import CoursesShow from './views/courses/Show'
 import CoursesEdit from './views/courses/Edit'
 
@@ -52,11 +51,6 @@ export default new Router({
       path: '/courses/:id',
       name: 'courses_show',
       component: CoursesShow
-    },
-    {
-      path: '/courses',
-      name: 'courses_create',
-      component: CoursesCreate
     },
     {
       path: '/courses/:id/edit',

@@ -1,9 +1,15 @@
 <!--
 @Date:   2021-02-26T19:48:08+00:00
-@Last modified time: 2021-03-10T10:02:37+00:00
+@Last modified time: 2021-03-16T19:22:03+00:00
 -->
 <template>
 <div class="enrolments">
+
+  <b-row>
+    <b-button @click="showModal()" pill variant="primary">Create</b-button>
+  </b-row>
+
+  <CreateEnrolmentModal ref="CreateEnrolmentModal" />
 
   <b-row>
     <b-col md="6" class="my-1">
@@ -41,12 +47,13 @@
 </template>
 
 <script>
+import CreateEnrolmentModal from '@/components/CreateEnrolmentModal.vue'
 import axios from 'axios';
 
 export default {
   name: 'EnrolmentsIndex',
   components: {
-
+    CreateEnrolmentModal,
   },
   data() {
     return {
@@ -69,6 +76,9 @@ export default {
     this.getEnrolments();
   },
   methods: {
+    showModal() {
+      this.$refs.CreateEnrolmentModal.show();
+    },
     getEnrolments() {
       let token = localStorage.getItem('token');
 

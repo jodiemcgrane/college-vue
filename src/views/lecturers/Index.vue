@@ -1,9 +1,15 @@
 <!--
 @Date:   2021-03-08T12:13:19+00:00
-@Last modified time: 2021-03-10T10:02:01+00:00
+@Last modified time: 2021-03-16T20:07:59+00:00
 -->
 <template>
 <div class="lecturers-index">
+
+  <b-row>
+    <b-button @click="showModal()" pill variant="primary">Create</b-button>
+  </b-row>
+
+  <CreateLecturerModal ref="CreateLecturerModal" />
 
   <b-row>
     <b-col md="6" class="my-1">
@@ -14,13 +20,13 @@
 
     <b-col md="6" class="my-1">
       <div class="d-flex">
-        <b-form-input type="search" v-model="keyword" @input="searchLecturer()" v-on:keyup.enter="searchLecturer()" placeholder="Search lecturer by name"></b-form-input>
+        <b-form-input type="search" v-model="term" @input="searchLecturer()" v-on:keyup.enter="searchLecturer()" placeholder="Search lecturer by name"></b-form-input>
         <b-button class="float-right ml-2" variant="primary" @click="searchLecturer()">Search</b-button>
       </div>
     </b-col>
   </b-row>
 
-  <b-table id="lecturers-table" hover :items="lecturers" :fields="fields" :per-page="perPage" :current-page="currentPage" responsive="sm">
+  <b-table id="lecturers-table" hover :items="filteredLecturers" :fields="fields" :per-page="perPage" :current-page="currentPage" responsive="sm">
     <template #cell(actions)="data">
 
       <router-link :to="{ name: 'lecturers_show', params: { id: data.item.id }}">
@@ -48,12 +54,13 @@
 </template>
 
 <script>
+import CreateLecturerModal from '@/components/CreateLecturerModal.vue'
 import axios from 'axios';
 
 export default {
   name: 'LecturersIndex',
   components: {
-
+    CreateLecturerModal
   },
   data() {
     return {
@@ -69,12 +76,25 @@ export default {
       perPage: 10,
       pageOptions: [10, 20, 30],
       lecturers: [],
+      term: "",
+      filteredLecturers: []
+    }
+  },
+  watch: {
+    term: function() {
+      this.searchLecturer();
     }
   },
   mounted() {
     this.getLecturers();
   },
   methods: {
+    showModal() {
+      this.$refs.CreateLecturerModal.show();
+    },
+    searchLecturer() {
+      this.filteredLecturers = this.lecturers.filter(lecturer => lecturer.name.toLowerCase().includes(this.term.toLowerCase()));
+    },
     getLecturers() {
       let token = localStorage.getItem('token');
 
@@ -86,6 +106,7 @@ export default {
         .then(response => {
           console.log(response.data);
           this.lecturers = response.data.data;
+          this.filteredLecturers = this.lecturers;
         })
         .catch(error => {
           console.log(error)

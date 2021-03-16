@@ -1,37 +1,48 @@
 <!--
 @Date:   2021-03-13T17:29:27+00:00
-@Last modified time: 2021-03-13T19:04:52+00:00
+@Last modified time: 2021-03-16T19:01:23+00:00
 -->
 <template>
 <div>
-  <b-modal id="modal1" ref="modal1" content-class="shadow" v-bind:hide-footer="true">
-    <p>Add new Course</p>
+  <b-modal id="createCourseModal" ref="createCourseModal" centered title="Create a Course" size="lg" header-bg-variant="primary" header-text-variant="light" v-bind:hide-footer="true">
 
-    <b-form>
-      <b-form-group label="Title">
-        <b-form-input type="text" v-model="form.title" />
-      </b-form-group>
+    <b-row>
+      <b-col md="6">
+        <b-form>
+          <b-form-group label="Title">
+            <b-form-input type="text" v-model="form.title" />
+          </b-form-group>
 
-      <b-form-group label="Code">
-        <b-form-input type="text" v-model="form.code" />
-      </b-form-group>
+          <b-form-group label="Code">
+            <b-form-input type="text" v-model="form.code" />
+          </b-form-group>
 
-      <b-form-group label="Description">
-        <b-form-input type="text" v-model="form.description" />
-      </b-form-group>
+          <b-form-group label="Points">
+            <b-form-input type="text" v-model="form.points" />
+          </b-form-group>
 
+          <b-form-group label="Level">
+            <b-form-input type="text" v-model="form.level" />
+          </b-form-group>
+        </b-form>
+      </b-col>
 
-      <b-form-group label="Points">
-        <b-form-input type="text" v-model="form.points" />
-      </b-form-group>
+      <b-col md="6">
+        <b-row>
+          <b-col md="8">
+            <b-form-group label="Description">
+              <b-form-textarea class="description-box" type="text" rows="5" placeholder="Enter course description..." v-model="form.description" />
+            </b-form-group>
+          </b-col>
+        </b-row>
+      </b-col>
 
-      <b-form-group label="Level">
-        <b-form-input type="text" v-model="form.level" />
-      </b-form-group>
-    </b-form>
+    </b-row>
 
     <template>
-      <b-button @click="createCourse()" variant="success">Submit</b-button>
+      <div class="text-center">
+        <b-button class="submit-button mt-1 mb-1" @click="createCourse()" pill variant="primary">Submit</b-button>
+      </div>
     </template>
 
   </b-modal>
@@ -59,7 +70,7 @@ export default {
   },
   methods: {
     show() {
-      this.$refs.modal1.show();
+      this.$refs.createCourseModal.show();
     },
     createCourse() {
       let token = localStorage.getItem('token');
@@ -86,5 +97,21 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style>
+.submit-button {
+  width: 20%;
+}
+
+.description-box {
+  height: 100%;
+  width: 360px;
+}
+
+.modal-backdrop {
+  display: none;
+}
+
+.modal {
+  background: rgba(0,0,0,0.5);
+}
 </style>
