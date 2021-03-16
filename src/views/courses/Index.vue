@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-03-13T18:34:29+00:00
+@Last modified time: 2021-03-16T10:50:48+00:00
 -->
 <template>
 <div class="courses-index">
@@ -20,13 +20,13 @@
 
     <b-col md="6" class="my-1">
       <div class="d-flex">
-        <b-form-input type="search" v-model="keyword" @input="searchCourse()" v-on:keyup.enter="searchCourse()" placeholder="Search course by title"></b-form-input>
+        <b-form-input type="search" v-model="term" v-on:keyup.enter="searchCourse()" placeholder="Search course by title"></b-form-input>
         <b-button class="float-right ml-2" variant="primary" @click="searchCourse()">Search</b-button>
       </div>
     </b-col>
   </b-row>
 
-  <b-table id="courses-table" hover :items="courses" :fields="fields" :per-page="perPage" :current-page="currentPage" responsive="sm">
+  <b-table id="courses-table" hover :items="filteredCourses" :fields="fields" :per-page="perPage" :current-page="currentPage" responsive="sm">
     <template #cell(actions)="data">
 
       <router-link :to="{ name: 'courses_show', params: { id: data.item.id }}">
@@ -55,7 +55,7 @@
 
 <script>
 import CreateCourseModal from '@/components/CreateCourseModal.vue'
-import axios from 'axios';
+import axios from '@/config/api';
 
 export default {
   name: 'CoursesIndex',
@@ -76,8 +76,13 @@ export default {
       perPage: 5,
       pageOptions: [5, 10, 15, 20, 25],
       courses: [],
-      keyword: '',
-      results: [],
+      term: "",
+      filteredCourses: []
+    }
+  },
+  watch: {
+    term: function() {
+      this.searchCourse();
     }
   },
   mounted() {
@@ -94,10 +99,13 @@ export default {
     showModal() {
       this.$refs.CreateCourseModal.show();
     },
+    searchCourse() {
+      this.filteredCourses = this.courses.filter(course => course.title.toLowerCase().includes(this.term.toLowerCase()));
+    },
     getCourses() {
       let token = localStorage.getItem('token');
 
-      axios.get('http://college.api:8000/api/courses', {
+      axios.get('/courses', {
           headers: {
             Authorization: "Bearer " + token
           }
@@ -105,30 +113,13 @@ export default {
         .then(response => {
           console.log(response.data);
           this.courses = response.data.data;
+          this.filteredCourses = this.courses;
         })
         .catch(error => {
           console.log(error)
           console.log(error.response.data)
         })
     },
-    searchCourse() {
-      let token = localStorage.getItem('token');
-
-      axios.get('http://college.api:8000/api/courses/?search=' + this.keyword, {
-          headers: {
-            Authorization: "Bearer " + token
-          }
-        })
-        .then(response => {
-          console.log(response.data);
-          this.results = response.data.data;
-        })
-        .catch(error => {
-          console.log(error)
-          console.log(error.response.data)
-        })
-
-    }
   },
   computed: {
     totalRows() {
