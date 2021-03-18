@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-16T19:54:35+00:00
-@Last modified time: 2021-03-18T15:14:07+00:00
+@Last modified time: 2021-03-18T15:37:13+00:00
 -->
 <template>
 <div>
@@ -23,7 +23,7 @@
           </b-form-group>
 
           <b-form-group label="Email">
-            <b-form-input v-model="form.email" />
+            <b-form-input type="email" v-model="form.email" />
           </b-form-group>
 
         </b-form>
@@ -32,7 +32,7 @@
 
     <template>
       <div class="text-center">
-        <b-button class="submit-button mt-1 mb-1" @click="createLecturer()" pill variant="primary">Submit</b-button>
+        <b-button class="submit-button mt-1 mb-1" @click="createLecturer(); hideModal();" pill variant="primary">Submit</b-button>
       </div>
     </template>
 
@@ -61,6 +61,12 @@ export default {
   methods: {
     show() {
       this.$refs.createLecturerModal.show();
+    },
+    hideModal() {
+      this.$refs.createLecturerModal.hide()
+    },
+    hide() {
+      this.$refs.createLecturerModal.hide();
     },
     createLecturer() {
       let token = localStorage.getItem('token');
@@ -101,6 +107,6 @@ export default {
 }
 
 .modal {
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
 }
 </style>
