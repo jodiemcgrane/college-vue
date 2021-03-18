@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-26T19:48:08+00:00
-@Last modified time: 2021-03-16T19:22:03+00:00
+@Last modified time: 2021-03-18T15:15:25+00:00
 -->
 <template>
 <div class="enrolments">
@@ -48,7 +48,7 @@
 
 <script>
 import CreateEnrolmentModal from '@/components/CreateEnrolmentModal.vue'
-import axios from 'axios';
+import axios from '@/config/api';
 
 export default {
   name: 'EnrolmentsIndex',
@@ -82,7 +82,7 @@ export default {
     getEnrolments() {
       let token = localStorage.getItem('token');
 
-      axios.get('http://college.api:8000/api/enrolments', {
+      axios.get('/enrolments', {
           headers: {
             Authorization: "Bearer " + token
           }

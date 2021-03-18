@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-06T13:26:11+00:00
-@Last modified time: 2021-03-08T20:53:29+00:00
+@Last modified time: 2021-03-18T15:15:36+00:00
 -->
 <template>
 <div class="enrolments-show">
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/config/api';
 
 export default {
   name: 'EnrolmentsShow',
@@ -65,7 +65,7 @@ export default {
   mounted() {
     let token = localStorage.getItem('token');
 
-    axios.get(`http://college.api:8000/api/enrolments/${this.$route.params.id}`, {
+    axios.get(`/enrolments/${this.$route.params.id}`, {
         headers: {
           Authorization: "Bearer " + token
         }

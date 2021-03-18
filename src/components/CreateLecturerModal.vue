@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-16T19:54:35+00:00
-@Last modified time: 2021-03-16T19:58:38+00:00
+@Last modified time: 2021-03-18T15:14:07+00:00
 -->
 <template>
 <div>
@@ -9,7 +9,7 @@
     <b-row>
       <b-col md="12">
         <b-form>
-          
+
           <b-form-group label="Name">
             <b-form-input type="text" v-model="form.name" />
           </b-form-group>
@@ -44,7 +44,7 @@
 import axios from '@/config/api';
 
 export default {
-  name: 'CreateCourseModal',
+  name: 'CreateLecturerModal',
   components: {
 
   },
@@ -64,12 +64,11 @@ export default {
     },
     createLecturer() {
       let token = localStorage.getItem('token');
-      axios.post('/enrolments', {
-          date: this.form.date,
-          time: this.form.time,
-          status: this.form.status,
-          course_id: this.form.course_id,
-          lecturer_id: this.form.lecturer_id
+      axios.post('/lecturers', {
+          name: this.form.name,
+          address: this.form.address,
+          phone: this.form.phone,
+          email: this.form.email,
         }, {
           headers: {
             Authorization: "Bearer " + token

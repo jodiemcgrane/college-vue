@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-20T16:42:32+00:00
-@Last modified time: 2021-02-23T10:20:29+00:00
+@Last modified time: 2021-03-18T15:16:24+00:00
 -->
 <template>
   <b-row class="justify-content-center">
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/config/api';
 
 export default {
   name: 'Register',
@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     register() {
-      axios.post('http://college.api:8000/api/register', {
+      axios.post('/register', {
         name: this.form.name,
         email: this.form.email,
         password: this.form.password

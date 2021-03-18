@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-19T14:03:38+00:00
-@Last modified time: 2021-03-08T20:34:46+00:00
+@Last modified time: 2021-03-18T15:14:26+00:00
 -->
 <template>
 <b-row>
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/config/api';
 
 export default {
   name: 'LoginForm',
@@ -67,7 +67,7 @@ export default {
   },
   methods: {
     login() {
-      axios.post('http://college.api:8000/api/login', {
+      axios.post('/login', {
           email: this.form.email,
           password: this.form.password
         })

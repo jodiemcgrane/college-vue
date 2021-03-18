@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-16T19:00:03+00:00
-@Last modified time: 2021-03-16T19:54:54+00:00
+@Last modified time: 2021-03-18T15:10:02+00:00
 -->
 <template>
 <div>
@@ -9,12 +9,12 @@
     <b-row>
       <b-col md="12">
         <b-form>
-          <b-form-group>
-            <b-form-datepicker v-model="form.date" />
+          <b-form-group label="Date">
+            <input class="form-control" type="date" v-model="form.date">
           </b-form-group>
 
-          <b-form-group>
-            <b-form-timepicker v-model="form.time" />
+          <b-form-group label="Time">
+            <input class="form-control" type="time" v-model="form.time">
           </b-form-group>
 
           <b-form-group label="Status">
@@ -24,12 +24,16 @@
             <b-form-radio v-model="form.status" value="interested">Interested</b-form-radio>
           </b-form-group>
 
-          <b-form-group label="Course ID">
-            <b-form-select v-model="form.course_id" />
+          <b-form-group label="Course Name">
+            <b-form-select v-model="selectedCourse">
+              <option v-for="course in courses" :value="course.id" :key="course.id">{{ course.title }}</option>
+            </b-form-select>
           </b-form-group>
 
-          <b-form-group label="Lecturer ID">
-            <b-form-select type="text" v-model="form.lecturer_id" />
+          <b-form-group label="Lecturer Name">
+            <b-form-select v-model="selectedLecturer">
+              <option v-for="lecturer in lecturers" :value="lecturer.id" :key="lecturer.id">{{ lecturer.name }}</option>
+            </b-form-select>
           </b-form-group>
         </b-form>
       </b-col>
@@ -37,7 +41,7 @@
 
     <template>
       <div class="text-center">
-        <b-button class="submit-button mt-1 mb-1" @click="createEnrolment()" pill variant="primary">Submit</b-button>
+        <b-button class="submit-button mt-1 mb-1" @click="createEnrolment(); hideModal();" pill variant="primary">Submit</b-button>
       </div>
     </template>
 
@@ -62,11 +66,25 @@ export default {
         course_id: "",
         lecturer_id: ""
       },
+      courses: [],
+      lecturers: [],
+      selectedCourse: "",
+      selectedLecturer: "",
     }
+  },
+  mounted() {
+    this.getCourses();
+    this.getLecturers();
   },
   methods: {
     show() {
       this.$refs.createEnrolmentModal.show();
+    },
+    hideModal() {
+      this.$refs.createEnrolmentModal.hide()
+    },
+    hide() {
+      this.$refs.createEnrolmentModal.hide();
     },
     createEnrolment() {
       let token = localStorage.getItem('token');
@@ -74,8 +92,8 @@ export default {
           date: this.form.date,
           time: this.form.time,
           status: this.form.status,
-          course_id: this.form.course_id,
-          lecturer_id: this.form.lecturer_id
+          course_id: this.selectedCourse,
+          lecturer_id: this.selectedLecturer
         }, {
           headers: {
             Authorization: "Bearer " + token
@@ -83,6 +101,40 @@ export default {
         })
         .then(response => {
           console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error)
+          console.log(error.response.data)
+        })
+    },
+    getCourses() {
+      let token = localStorage.getItem('token');
+
+      axios.get('/courses', {
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        })
+        .then(response => {
+          console.log(response.data);
+          this.courses = response.data.data;
+        })
+        .catch(error => {
+          console.log(error)
+          console.log(error.response.data)
+        })
+    },
+    getLecturers() {
+      let token = localStorage.getItem('token');
+
+      axios.get('/lecturers', {
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        })
+        .then(response => {
+          console.log(response.data);
+          this.lecturers = response.data.data;
         })
         .catch(error => {
           console.log(error)
@@ -108,6 +160,6 @@ export default {
 }
 
 .modal {
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
 }
 </style>

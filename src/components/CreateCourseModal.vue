@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-13T17:29:27+00:00
-@Last modified time: 2021-03-16T19:01:23+00:00
+@Last modified time: 2021-03-18T12:32:01+00:00
 -->
 <template>
 <div>
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/config/api';
 
 export default {
   name: 'CreateCourseModal',
@@ -74,7 +74,7 @@ export default {
     },
     createCourse() {
       let token = localStorage.getItem('token');
-      axios.post('http://college.api:8000/api/courses', {
+      axios.post('/courses', {
           title: this.form.title,
           code: this.form.code,
           description: this.form.description,

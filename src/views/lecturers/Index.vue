@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-08T12:13:19+00:00
-@Last modified time: 2021-03-16T20:07:59+00:00
+@Last modified time: 2021-03-18T15:15:57+00:00
 -->
 <template>
 <div class="lecturers-index">
@@ -55,7 +55,7 @@
 
 <script>
 import CreateLecturerModal from '@/components/CreateLecturerModal.vue'
-import axios from 'axios';
+import axios from '@/config/api';
 
 export default {
   name: 'LecturersIndex',
@@ -98,7 +98,7 @@ export default {
     getLecturers() {
       let token = localStorage.getItem('token');
 
-      axios.get('http://college.api:8000/api/lecturers', {
+      axios.get('/lecturers', {
           headers: {
             Authorization: "Bearer " + token
           }

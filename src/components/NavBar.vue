@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T11:32:26+00:00
-@Last modified time: 2021-03-13T17:24:55+00:00
+@Last modified time: 2021-03-18T15:14:38+00:00
 -->
 <template>
 <div>
@@ -55,7 +55,7 @@ import Burger from './menu/Burger.vue';
 import Sidebar from './menu/Sidebar.vue';
 
 
-import axios from 'axios';
+import axios from '@/config/api';
 
 export default {
   name: 'NavBar',
@@ -71,7 +71,7 @@ export default {
     logout() {
       let token = localStorage.getItem('token')
 
-      axios.get('http://college.api:8000/api/logout', {
+      axios.get('/logout', {
           headers: {
             Authorization: "Bearer " + token
           }
