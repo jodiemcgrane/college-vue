@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-03-16T10:50:48+00:00
+@Last modified time: 2021-03-19T13:22:00+00:00
 -->
 <template>
 <div class="courses-index">
@@ -36,7 +36,10 @@
       </router-link>
 
       <b-button class="mr-2" variant="warning" size="sm">
-        <b-icon icon="pencil-square" font-scale="1.3" style="color: #fff"></b-icon>
+        <router-link :to="{name: 'courses_edit', params: { id: data.item.id }}">
+          <b-icon icon="pencil-square" font-scale="1.3" style="color: #fff"></b-icon>
+        </router-link>
+
       </b-button>
 
       <b-button variant="danger" size="sm">

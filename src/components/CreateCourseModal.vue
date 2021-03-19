@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-13T17:29:27+00:00
-@Last modified time: 2021-03-18T12:32:01+00:00
+@Last modified time: 2021-03-18T16:00:22+00:00
 -->
 <template>
 <div>
@@ -9,9 +9,11 @@
     <b-row>
       <b-col md="6">
         <b-form>
-          <b-form-group label="Title">
-            <b-form-input type="text" v-model="form.title" />
-          </b-form-group>
+          <div class="wrap-input">
+            <b-form-group label="Title">
+              <b-form-input type="text" v-model="form.title" />
+            </b-form-group>
+          </div>
 
           <b-form-group label="Code">
             <b-form-input type="text" v-model="form.code" />
@@ -41,7 +43,7 @@
 
     <template>
       <div class="text-center">
-        <b-button class="submit-button mt-1 mb-1" @click="createCourse()" pill variant="primary">Submit</b-button>
+        <b-button class="submit-button mt-1 mb-1" @click="createCourse(); hideModal();" pill variant="primary">Submit</b-button>
       </div>
     </template>
 
@@ -71,6 +73,12 @@ export default {
   methods: {
     show() {
       this.$refs.createCourseModal.show();
+    },
+    hideModal() {
+      this.$refs.createCourseModal.hide()
+    },
+    hide() {
+      this.$refs.createCourseModal.hide();
     },
     createCourse() {
       let token = localStorage.getItem('token');
@@ -112,6 +120,6 @@ export default {
 }
 
 .modal {
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
 }
 </style>
