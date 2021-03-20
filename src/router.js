@@ -1,6 +1,6 @@
 /**
  * @Date:   2021-02-17T11:08:57+00:00
- * @Last modified time: 2021-03-16T18:59:37+00:00
+ * @Last modified time: 2021-03-20T14:27:04+00:00
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -15,6 +15,7 @@ import CoursesEdit from './views/courses/Edit'
 
 import EnrolmentsIndex from './views/enrolments/Index'
 import EnrolmentsShow from './views/enrolments/Show'
+import EnrolmentsEdit from './views/enrolments/Edit'
 
 import LecturersIndex from './views/lecturers/Index'
 import LecturersShow from './views/lecturers/Show'
@@ -67,6 +68,11 @@ export default new Router({
       path: '/enrolments/:id',
       name: 'enrolments_show',
       component: EnrolmentsShow
+    },
+    {
+      path: '/enrolments/:id/edit',
+      name: 'enrolments_edit',
+      component: EnrolmentsEdit
     },
     //lecturers routes
     {

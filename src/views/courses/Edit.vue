@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-02T10:01:10+00:00
-@Last modified time: 2021-03-19T13:42:15+00:00
+@Last modified time: 2021-03-20T14:25:44+00:00
 -->
 <template lang="html">
   <div>
@@ -39,7 +39,7 @@
     </b-row>
 
     <b-row>
-      <b-button @click="createCourse()" pill variant="warning">Update</b-button>
+      <b-button @click="updateCourse()" pill variant="warning">Update</b-button>
     </b-row>
 
   </div>
@@ -90,7 +90,7 @@ export default {
           console.log(error.response.data)
         })
     },
-    createCourse() {
+    updateCourse() {
       let token = localStorage.getItem('token');
 
       axios.put(`/courses/${this.$route.params.id}`, {

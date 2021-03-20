@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-03-19T13:22:00+00:00
+@Last modified time: 2021-03-20T14:10:58+00:00
 -->
 <template>
 <div class="courses-index">
@@ -39,12 +39,13 @@
         <router-link :to="{name: 'courses_edit', params: { id: data.item.id }}">
           <b-icon icon="pencil-square" font-scale="1.3" style="color: #fff"></b-icon>
         </router-link>
-
       </b-button>
 
       <b-button variant="danger" size="sm">
-        <b-icon icon="trash" font-scale="1.3" style="color: #fff"></b-icon>
+        <b-icon @click="showDeleteModal(data.item.ID)" icon="trash" font-scale="1.3" style="color: #fff"></b-icon>
       </b-button>
+
+      <DeleteCourseModal ref="DeleteCourseModal" />
 
     </template>
   </b-table>
@@ -58,12 +59,14 @@
 
 <script>
 import CreateCourseModal from '@/components/CreateCourseModal.vue'
+import DeleteCourseModal from '@/components/DeleteCourseModal.vue'
 import axios from '@/config/api';
 
 export default {
   name: 'CoursesIndex',
   components: {
     CreateCourseModal,
+    DeleteCourseModal,
   },
   data() {
     return {
@@ -80,7 +83,7 @@ export default {
       pageOptions: [5, 10, 15, 20, 25],
       courses: [],
       term: "",
-      filteredCourses: []
+      filteredCourses: [],
     }
   },
   watch: {
@@ -101,6 +104,9 @@ export default {
   methods: {
     showModal() {
       this.$refs.CreateCourseModal.show();
+    },
+    showDeleteModal() {
+      this.$refs.deleteCourseModal.show();
     },
     searchCourse() {
       this.filteredCourses = this.courses.filter(course => course.title.toLowerCase().includes(this.term.toLowerCase()));
