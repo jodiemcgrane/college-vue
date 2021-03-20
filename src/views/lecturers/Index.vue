@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-08T12:13:19+00:00
-@Last modified time: 2021-03-18T15:15:57+00:00
+@Last modified time: 2021-03-20T14:56:19+00:00
 -->
 <template>
 <div class="lecturers-index">
@@ -35,9 +35,11 @@
         </b-button>
       </router-link>
 
-      <b-button class="mr-2" variant="warning" size="sm">
-        <b-icon icon="pencil-square" font-scale="1.3" style="color: #fff"></b-icon>
-      </b-button>
+      <router-link :to="{ name: 'lecturers_edit', params: { id: data.item.id }}">
+        <b-button class="mr-2" variant="warning" size="sm">
+          <b-icon icon="pencil-square" font-scale="1.3" style="color: #fff"></b-icon>
+        </b-button>
+      </router-link>
 
       <b-button variant="danger" size="sm">
         <b-icon icon="trash" font-scale="1.3" style="color: #fff"></b-icon>

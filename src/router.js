@@ -1,6 +1,6 @@
 /**
  * @Date:   2021-02-17T11:08:57+00:00
- * @Last modified time: 2021-03-20T14:27:04+00:00
+ * @Last modified time: 2021-03-20T14:42:16+00:00
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -19,6 +19,7 @@ import EnrolmentsEdit from './views/enrolments/Edit'
 
 import LecturersIndex from './views/lecturers/Index'
 import LecturersShow from './views/lecturers/Show'
+import LecturersEdit from './views/lecturers/Edit'
 
 Vue.use(Router)
 
@@ -84,6 +85,11 @@ export default new Router({
       path: '/lecturers/:id',
       name: 'lecturers_show',
       component: LecturersShow
+    },
+    {
+      path: '/lecturers/:id/edit',
+      name: 'lecturers_edit',
+      component: LecturersEdit
     },
 
   ]
