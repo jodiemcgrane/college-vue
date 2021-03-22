@@ -1,19 +1,19 @@
 <!--
 @Date:   2021-03-13T17:29:27+00:00
-@Last modified time: 2021-03-18T16:00:22+00:00
+@Last modified time: 2021-03-22T12:47:48+00:00
 -->
 <template>
 <div>
-  <b-modal id="createCourseModal" ref="createCourseModal" centered title="Create a Course" size="lg" header-bg-variant="primary" header-text-variant="light" v-bind:hide-footer="true">
+  <b-modal id="createCourseModal" ref="createCourseModal" centered title="Add a Course" size="lg" header-bg-variant="primary" header-text-variant="light" v-bind:hide-footer="true">
 
     <b-row>
       <b-col md="6">
         <b-form>
-          <div class="wrap-input">
-            <b-form-group label="Title">
-              <b-form-input type="text" v-model="form.title" />
-            </b-form-group>
-          </div>
+
+          <b-form-group label="Title">
+            <b-form-input type="text" v-model="form.title" />
+          </b-form-group>
+
 
           <b-form-group label="Code">
             <b-form-input type="text" v-model="form.code" />
@@ -107,7 +107,7 @@ export default {
 
 <style>
 .submit-button {
-  width: 20%;
+  width: 15%;
 }
 
 .description-box {
@@ -121,5 +121,9 @@ export default {
 
 .modal {
   background: rgba(0, 0, 0, 0.5);
+}
+
+legend {
+  font-weight: 500;
 }
 </style>

@@ -1,10 +1,10 @@
 <!--
 @Date:   2021-03-16T19:00:03+00:00
-@Last modified time: 2021-03-18T15:10:02+00:00
+@Last modified time: 2021-03-22T13:35:49+00:00
 -->
 <template>
 <div>
-  <b-modal id="createEnrolmentModal" ref="createEnrolmentModal" centered title="Create an Enrolment" header-bg-variant="primary" header-text-variant="light" v-bind:hide-footer="true">
+  <b-modal id="createEnrolmentModal" ref="createEnrolmentModal" centered title="Add an Enrolment" header-bg-variant="primary" header-text-variant="light" v-bind:hide-footer="true">
 
     <b-row>
       <b-col md="12">
@@ -18,10 +18,26 @@
           </b-form-group>
 
           <b-form-group label="Status">
-            <b-form-radio v-model="form.status" value="assigned">Assigned</b-form-radio>
-            <b-form-radio v-model="form.status" value="associate">Associate</b-form-radio>
-            <b-form-radio v-model="form.status" value="career_break">Career Break</b-form-radio>
-            <b-form-radio v-model="form.status" value="interested">Interested</b-form-radio>
+            <b-row>
+              <b-col md="12">
+                  <b-button class="ml-2" pill variant="primary" size="sm">
+                    <b-form-radio v-model="form.status" value="assigned">Assigned</b-form-radio>
+                  </b-button>
+
+                  <b-button class="ml-2" pill variant="primary" size="sm">
+                    <b-form-radio v-model="form.status" value="associate">Associate</b-form-radio>
+                  </b-button>
+
+                  <b-button class="ml-2" pill variant="primary" size="sm">
+                    <b-form-radio v-model="form.status" value="career_break">Career Break</b-form-radio>
+                  </b-button>
+
+                  <b-button class="ml-2" pill variant="primary" size="sm">
+                    <b-form-radio v-model="form.status" value="interested">Interested</b-form-radio>
+                  </b-button>
+              </b-col>
+            </b-row>
+
           </b-form-group>
 
           <b-form-group label="Course Name">
@@ -161,5 +177,9 @@ export default {
 
 .modal {
   background: rgba(0, 0, 0, 0.5);
+}
+
+legend {
+  font-weight: 500;
 }
 </style>

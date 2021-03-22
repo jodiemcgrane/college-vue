@@ -1,10 +1,10 @@
 <!--
 @Date:   2021-03-16T19:54:35+00:00
-@Last modified time: 2021-03-18T15:37:13+00:00
+@Last modified time: 2021-03-22T13:40:57+00:00
 -->
 <template>
 <div>
-  <b-modal id="createLecturerModal" ref="createLecturerModal" centered title="Create a Lecturer" header-bg-variant="primary" header-text-variant="light" v-bind:hide-footer="true">
+  <b-modal id="createLecturerModal" ref="createLecturerModal" centered title="Add a Lecturer" header-bg-variant="primary" header-text-variant="light" v-bind:hide-footer="true">
 
     <b-row>
       <b-col md="12">
