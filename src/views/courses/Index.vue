@@ -1,12 +1,12 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-03-20T14:10:58+00:00
+@Last modified time: 2021-03-23T09:58:07+00:00
 -->
 <template>
 <div class="courses-index">
 
   <b-row>
-    <b-button @click="showModal()" pill variant="primary">Create</b-button>
+    <b-button @click="showCreateModal()" pill variant="primary">Create</b-button>
   </b-row>
 
   <CreateCourseModal ref="CreateCourseModal" />
@@ -42,10 +42,10 @@
       </b-button>
 
       <b-button variant="danger" size="sm">
-        <b-icon @click="showDeleteModal(data.item.ID)" icon="trash" font-scale="1.3" style="color: #fff"></b-icon>
+        <b-icon @click="showDeleteModal()" icon="trash" font-scale="1.3" style="color: #fff"></b-icon>
       </b-button>
 
-      <DeleteCourseModal ref="DeleteCourseModal" />
+      <DeleteCourseModal ref="DeleteCourseModal" :courseId="courses.id" />
 
     </template>
   </b-table>
@@ -102,11 +102,11 @@ export default {
     loggedIn: Boolean,
   },
   methods: {
-    showModal() {
+    showCreateModal() {
       this.$refs.CreateCourseModal.show();
     },
     showDeleteModal() {
-      this.$refs.deleteCourseModal.show();
+      this.$refs.DeleteCourseModal.show();
     },
     searchCourse() {
       this.filteredCourses = this.courses.filter(course => course.title.toLowerCase().includes(this.term.toLowerCase()));

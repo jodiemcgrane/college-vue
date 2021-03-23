@@ -1,13 +1,13 @@
 <!--
-@Date:   2021-03-19T13:48:26+00:00
-@Last modified time: 2021-03-23T10:15:58+00:00
+@Date:   2021-03-23T10:18:03+00:00
+@Last modified time: 2021-03-23T13:19:39+00:00
 -->
 <template>
-<div class="delete-course-modal">
-  <b-modal id="deleteCourseModal" ref="deleteCourseModal" centered title="Delete Course" header-bg-variant="primary" header-text-variant="light" v-bind:hide-footer="true">
+<div class="delete-lecturer-modal">
+  <b-modal id="deleteLecturerModal" ref="deleteLecturerModal" centered title="Delete a Lecturer" header-bg-variant="primary" header-text-variant="light" v-bind:hide-footer="true">
     <b-row>
       <h5>Are you sure you wish to delete</h5>
-      <b-button @click="deleteCourse(courses.id)">Delete</b-button>
+      <b-button @click="deleteLecturer(); hide();" variant="danger">Delete</b-button>
     </b-row>
   </b-modal>
 </div>
@@ -17,9 +17,9 @@
 import axios from '@/config/api';
 
 export default {
-  name: 'DeleteCourseModal',
+  name: 'DeleteLecturerModal',
   props: {
-    courseId: Number,
+    lecturerId: Number,
   },
   data() {
     return {
@@ -31,21 +31,19 @@ export default {
   },
   methods: {
     show() {
-      this.$refs.deleteCourseModal.show();
+      this.$refs.deleteLecturerModal.show();
     },
-    deleteCourse() {
+    deleteLecturer() {
+      //console.log(this.lecturerId);
       let token = localStorage.getItem('token');
 
-      axios.delete(`/courses/`, {
+      axios.delete(`/lecturers/${this.lecturerId}`, {
           headers: {
             Authorization: "Bearer " + token
           }
         })
         .then(response => {
           console.log(response.data);
-          this.$router.push({
-            name: 'courses_index'
-          });
         })
         .catch(error => {
           console.log(error)

@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-08T12:13:19+00:00
-@Last modified time: 2021-03-20T14:56:19+00:00
+@Last modified time: 2021-03-23T13:18:39+00:00
 -->
 <template>
 <div class="lecturers-index">
@@ -10,6 +10,8 @@
   </b-row>
 
   <CreateLecturerModal ref="CreateLecturerModal" />
+
+  <DeleteLecturerModal ref="DeleteLecturerModal" :lecturerId="selectedLecturer" />
 
   <b-row>
     <b-col md="6" class="my-1">
@@ -42,8 +44,10 @@
       </router-link>
 
       <b-button variant="danger" size="sm">
-        <b-icon icon="trash" font-scale="1.3" style="color: #fff"></b-icon>
+        <b-icon @click="showDeleteModal(data.item.id)" icon="trash" font-scale="1.3" style="color: #fff"></b-icon>
       </b-button>
+
+
 
     </template>
   </b-table>
@@ -57,12 +61,14 @@
 
 <script>
 import CreateLecturerModal from '@/components/CreateLecturerModal.vue'
+import DeleteLecturerModal from '@/components/DeleteLecturerModal.vue'
 import axios from '@/config/api';
 
 export default {
   name: 'LecturersIndex',
   components: {
-    CreateLecturerModal
+    CreateLecturerModal,
+    DeleteLecturerModal,
   },
   data() {
     return {
@@ -79,7 +85,8 @@ export default {
       pageOptions: [10, 20, 30],
       lecturers: [],
       term: "",
-      filteredLecturers: []
+      filteredLecturers: [],
+      selectedLecturer: 0,
     }
   },
   watch: {
@@ -93,6 +100,10 @@ export default {
   methods: {
     showModal() {
       this.$refs.CreateLecturerModal.show();
+    },
+    showDeleteModal(lecturerId) {
+      this.selectedLecturer = lecturerId;
+      this.$refs.DeleteLecturerModal.show();
     },
     searchLecturer() {
       this.filteredLecturers = this.lecturers.filter(lecturer => lecturer.name.toLowerCase().includes(this.term.toLowerCase()));

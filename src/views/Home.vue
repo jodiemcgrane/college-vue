@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T11:10:21+00:00
-@Last modified time: 2021-03-08T18:42:54+00:00
+@Last modified time: 2021-03-23T13:09:15+00:00
 -->
 <template>
 <div>
@@ -57,7 +57,7 @@
             <h3>Lecturers</h3>
             <p>Here is all the lecturers currently in the college system. Select below to view all lecturers.</p>
             <div class="text-center">
-              <b-button class="view-all-button mt-3" pill variant="primary" btn-sm>View All</b-button>
+              <b-button to="/lecturers" class="view-all-button mt-3" pill variant="primary" btn-sm>View All</b-button>
             </div>
           </b-card-text>
 
