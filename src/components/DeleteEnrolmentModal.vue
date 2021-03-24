@@ -1,13 +1,13 @@
 <!--
-@Date:   2021-03-19T13:48:26+00:00
-@Last modified time: 2021-03-24T16:45:07+00:00
+@Date:   2021-03-24T16:50:35+00:00
+@Last modified time: 2021-03-24T16:59:09+00:00
 -->
 <template>
-<div class="delete-course-modal">
-  <b-modal id="deleteCourseModal" ref="deleteCourseModal" centered title="Delete Course" header-bg-variant="primary" header-text-variant="light" v-bind:hide-footer="true">
+<div class="delete-enrolment-modal">
+  <b-modal id="deleteEnrolmentModal" ref="deleteEnrolmentModal" centered title="Delete an Enrolment" header-bg-variant="primary" header-text-variant="light" v-bind:hide-footer="true">
     <b-row>
       <h5>Are you sure you wish to delete</h5>
-      <b-button @click="deleteCourse(); hide();">Delete</b-button>
+      <b-button @click="deleteEnrolment(); hide();" variant="danger">Delete</b-button>
     </b-row>
   </b-modal>
 </div>
@@ -17,9 +17,9 @@
 import axios from '@/config/api';
 
 export default {
-  name: 'DeleteCourseModal',
+  name: 'DeleteEnrolmentModal',
   props: {
-    courseId: Number,
+    enrolmentId: Number,
   },
   data() {
     return {
@@ -31,16 +31,16 @@ export default {
   },
   methods: {
     show() {
-      this.$refs.deleteCourseModal.show();
+      this.$refs.deleteEnrolmentModal.show();
     },
     hide() {
-      this.$refs.deleteCourseModal.hide();
+      this.$refs.deleteEnrolmentModal.hide();
     },
-    deleteCourse() {
+    deleteEnrolment() {
+      console.log(this.enrolmentId);
       let token = localStorage.getItem('token');
 
-      //console.log(this.courseId);
-      axios.delete(`/courses/${this.courseId}`, {
+      axios.delete(`/enrolments/${this.enrolmentId}`, {
           headers: {
             Authorization: "Bearer " + token
           }

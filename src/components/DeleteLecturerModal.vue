@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-23T10:18:03+00:00
-@Last modified time: 2021-03-23T13:19:39+00:00
+@Last modified time: 2021-03-24T16:44:44+00:00
 -->
 <template>
 <div class="delete-lecturer-modal">
@@ -32,6 +32,9 @@ export default {
   methods: {
     show() {
       this.$refs.deleteLecturerModal.show();
+    },
+    hide() {
+      this.$refs.deleteLecturerModal.hide();
     },
     deleteLecturer() {
       //console.log(this.lecturerId);

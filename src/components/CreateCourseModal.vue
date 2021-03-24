@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-13T17:29:27+00:00
-@Last modified time: 2021-03-22T12:47:48+00:00
+@Last modified time: 2021-03-24T16:43:52+00:00
 -->
 <template>
 <div>
@@ -43,7 +43,7 @@
 
     <template>
       <div class="text-center">
-        <b-button class="submit-button mt-1 mb-1" @click="createCourse(); hideModal();" pill variant="primary">Submit</b-button>
+        <b-button class="submit-button mt-1 mb-1" @click="createCourse(); hide();" pill variant="primary">Submit</b-button>
       </div>
     </template>
 
@@ -73,9 +73,6 @@ export default {
   methods: {
     show() {
       this.$refs.createCourseModal.show();
-    },
-    hideModal() {
-      this.$refs.createCourseModal.hide()
     },
     hide() {
       this.$refs.createCourseModal.hide();

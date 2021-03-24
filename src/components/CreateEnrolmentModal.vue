@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-16T19:00:03+00:00
-@Last modified time: 2021-03-22T13:35:49+00:00
+@Last modified time: 2021-03-24T16:58:04+00:00
 -->
 <template>
 <div>
@@ -57,7 +57,7 @@
 
     <template>
       <div class="text-center">
-        <b-button class="submit-button mt-1 mb-1" @click="createEnrolment(); hideModal();" pill variant="primary">Submit</b-button>
+        <b-button class="submit-button mt-1 mb-1" @click="createEnrolment(); hide();" pill variant="primary">Submit</b-button>
       </div>
     </template>
 
@@ -95,9 +95,6 @@ export default {
   methods: {
     show() {
       this.$refs.createEnrolmentModal.show();
-    },
-    hideModal() {
-      this.$refs.createEnrolmentModal.hide()
     },
     hide() {
       this.$refs.createEnrolmentModal.hide();

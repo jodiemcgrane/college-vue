@@ -1,12 +1,12 @@
 <!--
 @Date:   2021-03-08T12:13:19+00:00
-@Last modified time: 2021-03-23T13:18:39+00:00
+@Last modified time: 2021-03-24T16:41:59+00:00
 -->
 <template>
 <div class="lecturers-index">
 
   <b-row>
-    <b-button @click="showModal()" pill variant="primary">Create</b-button>
+    <b-button @click="showCreateModal()" pill variant="primary">Create</b-button>
   </b-row>
 
   <CreateLecturerModal ref="CreateLecturerModal" />
@@ -98,7 +98,7 @@ export default {
     this.getLecturers();
   },
   methods: {
-    showModal() {
+    showCreateModal() {
       this.$refs.CreateLecturerModal.show();
     },
     showDeleteModal(lecturerId) {
@@ -132,7 +132,6 @@ export default {
       return this.lecturers.length
     }
   },
-
 }
 </script>
 

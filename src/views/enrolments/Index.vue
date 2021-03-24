@@ -1,15 +1,17 @@
 <!--
 @Date:   2021-02-26T19:48:08+00:00
-@Last modified time: 2021-03-20T14:34:09+00:00
+@Last modified time: 2021-03-24T16:55:43+00:00
 -->
 <template>
 <div class="enrolments">
 
   <b-row>
-    <b-button @click="showModal()" pill variant="primary">Create</b-button>
+    <b-button @click="showCreateModal()" pill variant="primary">Create</b-button>
   </b-row>
 
   <CreateEnrolmentModal ref="CreateEnrolmentModal" />
+
+  <DeleteEnrolmentModal ref="DeleteEnrolmentModal" :enrolmentId="selectedEnrolment" />
 
   <b-row>
     <b-col md="6" class="my-1">
@@ -35,7 +37,7 @@
       </router-link>
 
       <b-button variant="danger" size="sm">
-        <b-icon icon="trash" font-scale="1.3" style="color: #fff"></b-icon>
+        <b-icon @click="showDeleteModal(data.item.id)" icon="trash" font-scale="1.3" style="color: #fff"></b-icon>
       </b-button>
 
     </template>
@@ -50,12 +52,14 @@
 
 <script>
 import CreateEnrolmentModal from '@/components/CreateEnrolmentModal.vue'
+import DeleteEnrolmentModal from '@/components/DeleteEnrolmentModal.vue'
 import axios from '@/config/api';
 
 export default {
   name: 'EnrolmentsIndex',
   components: {
     CreateEnrolmentModal,
+    DeleteEnrolmentModal,
   },
   data() {
     return {
@@ -71,15 +75,20 @@ export default {
       currentPage: 1,
       perPage: 5,
       pageOptions: [5, 10, 15, 20, 25],
-      enrolments: []
+      enrolments: [],
+      selectedEnrolment: 0,
     }
   },
   mounted() {
     this.getEnrolments();
   },
   methods: {
-    showModal() {
+    showCreateModal() {
       this.$refs.CreateEnrolmentModal.show();
+    },
+    showDeleteModal(enrolmentId) {
+      this.selectedEnrolment = enrolmentId;
+      this.$refs.DeleteEnrolmentModal.show();
     },
     getEnrolments() {
       let token = localStorage.getItem('token');
