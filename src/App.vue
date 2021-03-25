@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T11:01:49+00:00
-@Last modified time: 2021-03-22T12:34:38+00:00
+@Last modified time: 2021-03-25T19:06:51+00:00
 -->
 <template>
 <div>
@@ -64,5 +64,14 @@ h1, h2, h3, h4, h5, h6 {
 p {
   font-family: "Roboto", sans-serif;
   letter-spacing: 0.5px;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+}
+
+.right {
+  text-align: right;
 }
 </style>

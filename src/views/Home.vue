@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T11:10:21+00:00
-@Last modified time: 2021-03-23T13:09:15+00:00
+@Last modified time: 2021-03-25T19:31:34+00:00
 -->
 <template>
 <div>
@@ -8,7 +8,7 @@
     <!-- {{ loggedIn }} -->
 
     <b-col class="mt-3" md="8">
-      <b-card>
+      <b-card class="home-page-card">
         <div class="card-horizontal">
           <b-col md="6">
             <b-card-text>
@@ -30,7 +30,7 @@
     </b-col>
 
     <b-col class="mt-3" md="8">
-      <b-card>
+      <b-card class="home-page-card">
         <div class="card-horizontal">
           <b-card-text>
             <h3>Enrolments</h3>
@@ -51,7 +51,7 @@
     </b-col>
 
     <b-col class="mt-3" md="8">
-      <b-card>
+      <b-card class="home-page-card">
         <div class="card-horizontal">
           <b-card-text>
             <h3>Lecturers</h3>
@@ -95,7 +95,7 @@ export default {
   width: 35%;
 }
 
-.card {
+.home-page-card {
   border-radius: 4px;
   background: #fff;
   box-shadow: 0 6px 8px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
@@ -103,7 +103,7 @@ export default {
   padding: 14px 80px 18px 36px;
   cursor: pointer;
 }
-.card:hover {
+.home-page-card:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0, 0, 0, .10), 0 4px 8px rgba(0, 0, 0, .06);
   border-color: #0275d8;
