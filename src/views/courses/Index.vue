@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-03-25T20:11:43+00:00
+@Last modified time: 2021-03-26T11:52:27+00:00
 -->
 <template>
 <div class="courses-index">
@@ -9,7 +9,7 @@
     <b-col md="4" class="mb-3">
       <h2>Courses</h2>
     </b-col>
-    <b-col md="2 ml-auto">
+    <b-col md="3 ml-auto">
       <b-breadcrumb>
         <b-breadcrumb-item to="/home">Home</b-breadcrumb-item>
         <b-breadcrumb-item to="/courses">Courses</b-breadcrumb-item>
@@ -63,7 +63,7 @@
 
     <b-row class="mt-4">
       <b-col md="6" class="my-1">
-        <b-pagination class="custom-pagination" v-model="currentPage" :total-rows="totalRows" :per-page="perPage" aria-controls="courses-table"></b-pagination>
+        <b-pagination v-model="currentPage" :total-rows="totalRows" :per-page="perPage" aria-controls="courses-table"></b-pagination>
       </b-col>
 
       <b-col md="6" class="my-1 ml-auto">
@@ -171,6 +171,6 @@ table.table-hover tbody tr:hover {
   background: #fff;
   box-shadow: 0 6px 8px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
   transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
-  padding: 14px 80px 18px 36px;
+  padding: 14px 36px 18px 36px;
 }
 </style>
