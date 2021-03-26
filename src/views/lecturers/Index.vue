@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-08T12:13:19+00:00
-@Last modified time: 2021-03-26T11:51:59+00:00
+@Last modified time: 2021-03-26T16:07:09+00:00
 -->
 <template>
 <div class="lecturers-index">
@@ -39,27 +39,33 @@
       </b-col>
     </b-row>
 
-    <b-table id="lecturers-table" hover :items="filteredLecturers" :fields="fields" :per-page="perPage" :current-page="currentPage" responsive="sm">
-      <template #cell(actions)="data">
 
-        <router-link :to="{ name: 'lecturers_show', params: { id: data.item.id }}">
-          <b-button class="mr-2" variant="primary" size="sm">
-            <b-icon icon="arrow-right-square" font-scale="1.3" style="color: #fff"></b-icon>
+    <b-row>
+      <b-table id="lecturers-table" hover responsive :items="filteredLecturers" :fields="fields" :per-page="perPage" :current-page="currentPage">
+
+        <template #cell(actions)="data">
+
+          <router-link :to="{ name: 'lecturers_show', params: { id: data.item.id }}">
+            <b-button class="mr-2" variant="primary" size="sm">
+              <b-icon icon="arrow-right-square" font-scale="1.3" style="color: #fff"></b-icon>
+            </b-button>
+          </router-link>
+
+          <router-link :to="{ name: 'lecturers_edit', params: { id: data.item.id }}">
+            <b-button class="mr-2" variant="warning" size="sm">
+              <b-icon icon="pencil-square" font-scale="1.3" style="color: #fff"></b-icon>
+            </b-button>
+          </router-link>
+
+          <b-button variant="danger" size="sm">
+            <b-icon @click="showDeleteModal(data.item.id)" icon="trash" font-scale="1.3" style="color: #fff"></b-icon>
           </b-button>
-        </router-link>
 
-        <router-link :to="{ name: 'lecturers_edit', params: { id: data.item.id }}">
-          <b-button class="mr-2" variant="warning" size="sm">
-            <b-icon icon="pencil-square" font-scale="1.3" style="color: #fff"></b-icon>
-          </b-button>
-        </router-link>
+        </template>
 
-        <b-button variant="danger" size="sm">
-          <b-icon @click="showDeleteModal(data.item.id)" icon="trash" font-scale="1.3" style="color: #fff"></b-icon>
-        </b-button>
+      </b-table>
+    </b-row>
 
-      </template>
-    </b-table>
 
     <b-row class="mt-4">
       <b-col md="6" class="my-1">
@@ -99,7 +105,7 @@ export default {
         'address',
         'email',
         'phone',
-        'actions'
+        'actions',
       ],
       currentPage: 1,
       perPage: 10,
@@ -164,4 +170,5 @@ export default {
   transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
   padding: 14px 36px 18px 36px;
 }
+
 </style>

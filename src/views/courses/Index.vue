@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-03-26T11:52:27+00:00
+@Last modified time: 2021-03-26T15:47:37+00:00
 -->
 <template>
 <div class="courses-index">
