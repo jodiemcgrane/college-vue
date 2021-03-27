@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-02T10:01:10+00:00
-@Last modified time: 2021-03-20T14:25:44+00:00
+@Last modified time: 2021-03-27T12:26:13+00:00
 -->
 <template lang="html">
   <div>
@@ -122,5 +122,8 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style>
+.btn-warning, .btn-warning:hover {
+  color: #fff;
+}
 </style>
