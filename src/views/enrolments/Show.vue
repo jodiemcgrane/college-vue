@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-06T13:26:11+00:00
-@Last modified time: 2021-03-18T15:15:36+00:00
+@Last modified time: 2021-03-27T13:23:10+00:00
 -->
 <template>
 <div class="enrolments-show">
@@ -14,13 +14,18 @@
             <p>Date: {{ enrolment.date }}</p>
             <p>Time: {{ enrolment.time }}</p>
             <p>Status: {{ enrolment.status }}</p>
-            <p>Lecturer ID: {{ enrolment.code }}</p>
-            <p>Course ID: {{ enrolment.code }}</p>
+            <p>Lecturer ID: {{ enrolment.lecturer.id }}</p>
+            <p>Course ID: {{ enrolment.course.id }}</p>
+
+            <b-button @click="showUpdateModal()" pill variant="warning">Update</b-button>
+
           </b-card-text>
         </div>
       </b-card>
     </b-col>
   </b-row>
+
+  <UpdateEnrolmentModal ref="UpdateEnrolmentModal" :updateEnrolmentData="enrolment" />
 
   <b-row class="justify-content-center">
     <b-col class="mt-3" sm="5">
@@ -46,16 +51,18 @@
       </b-card>
     </b-col>
   </b-row>
+
 </div>
 </template>
 
 <script>
+import UpdateEnrolmentModal from '@/components/UpdateEnrolmentModal.vue'
 import axios from '@/config/api';
 
 export default {
   name: 'EnrolmentsShow',
   components: {
-
+    UpdateEnrolmentModal,
   },
   data() {
     return {
@@ -63,23 +70,31 @@ export default {
     }
   },
   mounted() {
-    let token = localStorage.getItem('token');
-
-    axios.get(`/enrolments/${this.$route.params.id}`, {
-        headers: {
-          Authorization: "Bearer " + token
-        }
-      })
-      .then(response => {
-        console.log(response.data);
-        this.enrolment = response.data.data;
-
-      })
-      .catch(error => {
-        console.log(error)
-        console.log(error.response.data)
-      })
+    this.getEnrolment();
   },
+  methods: {
+    showUpdateModal() {
+      this.$refs.UpdateEnrolmentModal.show();
+    },
+    getEnrolment() {
+      let token = localStorage.getItem('token');
+
+      axios.get(`/enrolments/${this.$route.params.id}`, {
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        })
+        .then(response => {
+          console.log(response.data);
+          this.enrolment = response.data.data;
+
+        })
+        .catch(error => {
+          console.log(error)
+          console.log(error.response.data)
+        })
+    }
+  }
 }
 </script>
 

@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-20T14:42:29+00:00
-@Last modified time: 2021-03-20T14:56:50+00:00
+@Last modified time: 2021-03-27T12:55:32+00:00
 -->
 <template lang="html">
   <div>
@@ -39,7 +39,7 @@
 import axios from '@/config/api';
 
 export default {
-  name: 'CoursesEdit',
+  name: 'LecturersEdit',
   components: {
 
   },

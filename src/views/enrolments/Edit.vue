@@ -1,10 +1,10 @@
 <!--
 @Date:   2021-03-20T14:26:09+00:00
-@Last modified time: 2021-03-20T14:40:00+00:00
+@Last modified time: 2021-03-27T13:12:39+00:00
 -->
 <!--
 @Date:   2021-03-02T10:01:10+00:00
-@Last modified time: 2021-03-20T14:40:00+00:00
+@Last modified time: 2021-03-27T13:12:39+00:00
 -->
 <template lang="html">
   <div>
@@ -52,7 +52,7 @@
 import axios from '@/config/api';
 
 export default {
-  name: 'CoursesEdit',
+  name: 'EnrolmentsEdit',
   components: {
 
   },
