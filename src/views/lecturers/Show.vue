@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-08T12:13:24+00:00
-@Last modified time: 2021-03-18T15:16:08+00:00
+@Last modified time: 2021-03-27T13:58:05+00:00
 -->
 <template>
 <div class="lecturers-show">
@@ -15,12 +15,16 @@
             <p>Address: {{ lecturer.address }}</p>
             <p>E-mail: {{ lecturer.email }}</p>
             <p>Phone No: {{ lecturer.phone }}</p>
+
+            <b-button @click="showUpdateModal()" pill variant="warning">Update</b-button>
           </b-card-text>
         </div>
 
       </b-card>
     </b-col>
   </b-row>
+
+  <UpdateLecturerModal ref="UpdateLecturerModal" :updateLecturerData="lecturer" />
 
 
   <b-row class="justify-content-center">
@@ -55,12 +59,13 @@
 </template>
 
 <script>
+import UpdateLecturerModal from '@/components/UpdateLecturerModal.vue'
 import axios from '@/config/api';
 
 export default {
   name: 'LecturersShow',
   components: {
-
+    UpdateLecturerModal,
   },
   data() {
     return {
@@ -72,29 +77,40 @@ export default {
         'course_id',
         'Actions'
       ],
+      currentPage: 1,
+      perPage: 10,
+      pageOptions: [10, 20, 30],
       lecturer: {},
       enrolments: []
     }
   },
   mounted() {
-    let token = localStorage.getItem('token');
-
-    axios.get(`/lecturers/${this.$route.params.id}`, {
-        headers: {
-          Authorization: "Bearer " + token
-        }
-      })
-      .then(response => {
-        console.log(response.data);
-        this.lecturer = response.data.data;
-        this.enrolments = response.data.data.enrolments
-
-      })
-      .catch(error => {
-        console.log(error)
-        console.log(error.response.data)
-      })
+    this.getLecturer();
   },
+  methods: {
+    showUpdateModal() {
+      this.$refs.UpdateLecturerModal.show();
+    },
+    getLecturer() {
+      let token = localStorage.getItem('token');
+
+      axios.get(`/lecturers/${this.$route.params.id}`, {
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        })
+        .then(response => {
+          console.log(response.data);
+          this.lecturer = response.data.data;
+          this.enrolments = response.data.data.enrolments
+
+        })
+        .catch(error => {
+          console.log(error)
+          console.log(error.response.data)
+        })
+    }
+  }
 
 }
 </script>
