@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-02T10:01:10+00:00
-@Last modified time: 2021-03-27T12:26:13+00:00
+@Last modified time: 2021-03-28T14:22:21+01:00
 -->
 <template lang="html">
   <div>
@@ -98,7 +98,7 @@ export default {
           code: this.form.code,
           description: this.form.description,
           points: this.form.points,
-          level: this.form.points
+          level: this.form.level
         }, {
           headers: {
             Authorization: "Bearer " + token

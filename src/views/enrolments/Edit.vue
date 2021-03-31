@@ -1,10 +1,6 @@
 <!--
 @Date:   2021-03-20T14:26:09+00:00
-@Last modified time: 2021-03-27T13:12:39+00:00
--->
-<!--
-@Date:   2021-03-02T10:01:10+00:00
-@Last modified time: 2021-03-27T13:12:39+00:00
+@Last modified time: 2021-03-31T09:27:30+01:00
 -->
 <template lang="html">
   <div>
@@ -27,13 +23,13 @@
           </b-form-group>
 
           <b-form-group label="Course Name">
-            <b-form-select v-model="selectedCourse">
+            <b-form-select v-model="form.course_id">
               <option v-for="course in courses" :value="course.id" :key="course.id">{{ course.title }}</option>
             </b-form-select>
           </b-form-group>
 
           <b-form-group label="Lecturer Name">
-            <b-form-select v-model="selectedLecturer">
+            <b-form-select v-model="form.lecturer_id">
               <option v-for="lecturer in lecturers" :value="lecturer.id" :key="lecturer.id">{{ lecturer.name }}</option>
             </b-form-select>
           </b-form-group>
@@ -67,8 +63,6 @@ export default {
       },
       courses: [],
       lecturers: [],
-      selectedCourse: "",
-      selectedLecturer: "",
       errors: {}
     }
   },
