@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-08T12:13:19+00:00
-@Last modified time: 2021-03-26T16:07:09+00:00
+@Last modified time: 2021-04-01T12:31:39+01:00
 -->
 <template>
 <div class="lecturers-index">
@@ -41,7 +41,13 @@
 
 
     <b-row>
-      <b-table id="lecturers-table" hover responsive :items="filteredLecturers" :fields="fields" :per-page="perPage" :current-page="currentPage">
+      <b-table id="lecturers-table" hover :busy="isBusy" responsive :items="filteredLecturers" :fields="fields" :per-page="perPage" :current-page="currentPage">
+
+        <template #table-busy>
+          <div class="text-center">
+            <b-spinner class="align-middle m-5" style="width: 4rem; height: 4rem;" variant="primary"></b-spinner>
+          </div>
+        </template>
 
         <template #cell(actions)="data">
 
@@ -114,6 +120,7 @@ export default {
       term: "",
       filteredLecturers: [],
       selectedLecturer: 0,
+      isBusy: false,
     }
   },
   watch: {
@@ -138,6 +145,8 @@ export default {
     getLecturers() {
       let token = localStorage.getItem('token');
 
+      this.isBusy = true;
+
       axios.get('/lecturers', {
           headers: {
             Authorization: "Bearer " + token
@@ -152,6 +161,9 @@ export default {
           console.log(error)
           console.log(error.response.data)
         })
+        .finally(() => {
+          this.isBusy = false;
+        });
     },
   },
   computed: {

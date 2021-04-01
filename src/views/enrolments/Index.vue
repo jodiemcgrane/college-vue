@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-26T19:48:08+00:00
-@Last modified time: 2021-03-26T11:53:08+00:00
+@Last modified time: 2021-04-01T12:30:29+01:00
 -->
 <template>
 <div class="enrolments-index">
@@ -32,7 +32,14 @@
       </b-col>
     </b-row>
 
-    <b-table id="enrolments-table" hover :items="enrolments" :fields="fields" :per-page="perPage" :current-page="currentPage" responsive="sm">
+    <b-table id="enrolments-table" hover :busy="isBusy" :items="enrolments" :fields="fields" :per-page="perPage" :current-page="currentPage" responsive="sm">
+
+      <template #table-busy>
+        <div class="text-center">
+          <b-spinner class="align-middle m-5" style="width: 4rem; height: 4rem;" variant="primary"></b-spinner>
+        </div>
+      </template>
+
       <template #cell(actions)="data">
 
         <router-link :to="{ name: 'enrolments_show', params: { id: data.item.id }}">
@@ -100,6 +107,7 @@ export default {
       pageOptions: [5, 10, 15, 20, 25],
       enrolments: [],
       selectedEnrolment: 0,
+      isBusy: false,
     }
   },
   mounted() {
@@ -116,6 +124,8 @@ export default {
     getEnrolments() {
       let token = localStorage.getItem('token');
 
+      this.isBusy = true;
+
       axios.get('/enrolments', {
           headers: {
             Authorization: "Bearer " + token
@@ -129,6 +139,9 @@ export default {
           console.log(error)
           console.log(error.response.data)
         })
+        .finally(() => {
+          this.isBusy = false;
+        });
     }
   },
   computed: {

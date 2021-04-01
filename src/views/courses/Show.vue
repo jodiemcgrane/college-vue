@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-03-27T12:16:58+00:00
+@Last modified time: 2021-04-01T12:33:13+01:00
 -->
 <template>
 <div class="courses-show">
@@ -36,7 +36,14 @@
 
       <h5>Enrolments for: {{ course.title }}</h5>
 
-      <b-table id="course-enrolments-table" class="mt-3" hover :items="enrolments" :fields="fields" :per-page="perPage" :current-page="currentPage" responsive="sm">
+      <b-table id="course-enrolments-table" class="mt-3" hover :busy="isBusy" :items="enrolments" :fields="fields" :per-page="perPage" :current-page="currentPage" responsive="sm">
+
+        <template #table-busy>
+          <div class="text-center">
+            <b-spinner class="align-middle m-5" style="width: 4rem; height: 4rem;" variant="primary"></b-spinner>
+          </div>
+        </template>
+
         <template #cell(actions)="data">
 
           <router-link :to="{ name: 'courses_show', params: { id: data.item.id }}">
@@ -86,6 +93,7 @@ export default {
       pageOptions: [5, 10, 15, 20, 25],
       course: {},
       enrolments: [],
+      isBusy: false,
     }
   },
   mounted() {
@@ -97,6 +105,8 @@ export default {
     },
     getCourse() {
       let token = localStorage.getItem('token');
+
+      this.isBusy = true;
 
       axios.get(`/courses/${this.$route.params.id}`, {
           headers: {
@@ -112,6 +122,9 @@ export default {
           console.log(error)
           console.log(error.response.data)
         })
+        .finally(() => {
+          this.isBusy = false;
+        });
     }
   }
 }

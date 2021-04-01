@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-03-26T15:47:37+00:00
+@Last modified time: 2021-04-01T12:28:20+01:00
 -->
 <template>
 <div class="courses-index">
@@ -39,7 +39,14 @@
       </b-col>
     </b-row>
 
-    <b-table id="courses-table" hover :items="filteredCourses" :fields="fields" :per-page="perPage" :current-page="currentPage" responsive="sm">
+    <b-table id="courses-table" hover :busy="isBusy" :items="filteredCourses" :fields="fields" :per-page="perPage" :current-page="currentPage" responsive="sm">
+
+      <template #table-busy>
+        <div class="text-center">
+          <b-spinner class="align-middle m-5" style="width: 4rem; height: 4rem;" variant="primary"></b-spinner>
+        </div>
+      </template>
+
       <template #cell(actions)="data">
 
         <router-link :to="{ name: 'courses_show', params: { id: data.item.id }}">
@@ -108,6 +115,7 @@ export default {
       term: "",
       filteredCourses: [],
       selectedCourse: 0,
+      isBusy: false,
     }
   },
   watch: {
@@ -132,6 +140,8 @@ export default {
     getCourses() {
       let token = localStorage.getItem('token');
 
+      this.isBusy = true;
+
       axios.get('/courses', {
           headers: {
             Authorization: "Bearer " + token
@@ -146,6 +156,9 @@ export default {
           console.log(error)
           console.log(error.response.data)
         })
+        .finally(() => {
+          this.isBusy = false;
+        });
     },
   },
   computed: {
@@ -162,8 +175,8 @@ table.table-hover tbody tr:hover {
 }
 
 .page-item:hover .page-link {
-    background-color: #B6D9FF !important;
-    border-color: #B6D9FF !important;
+  background-color: #B6D9FF !important;
+  border-color: #B6D9FF !important;
 }
 
 .courses-card {
