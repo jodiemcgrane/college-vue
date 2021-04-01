@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-26T19:48:08+00:00
-@Last modified time: 2021-04-01T12:30:29+01:00
+@Last modified time: 2021-04-01T14:46:47+01:00
 -->
 <template>
 <div class="enrolments-index">
@@ -9,12 +9,12 @@
     <b-col md="4" class="mb-3">
       <h2>Enrolments</h2>
     </b-col>
-    <b-col md="3 ml-auto">
+    <!-- <b-col md="3 ml-auto">
       <b-breadcrumb>
         <b-breadcrumb-item to="/home">Home</b-breadcrumb-item>
         <b-breadcrumb-item to="/enrolments">Enrolments</b-breadcrumb-item>
       </b-breadcrumb>
-    </b-col>
+    </b-col> -->
   </b-row>
 
   <b-card class="enrolments-card">

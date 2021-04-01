@@ -1,11 +1,20 @@
 <!--
 @Date:   2021-02-17T11:10:21+00:00
-@Last modified time: 2021-04-01T13:07:30+01:00
+@Last modified time: 2021-04-01T16:36:45+01:00
 -->
 <template>
 <div>
+
+  <b-row class="mb-2">
+    <b-col md="4" class="mb-3">
+      <h2>Home Page</h2>
+    </b-col>
+    <b-col md="3 ml-auto">
+
+    </b-col>
+  </b-row>
+
   <b-row class="justify-content-center">
-    <!-- {{ loggedIn }} -->
 
     <b-col class="mt-3" md="8">
       <b-card class="home-page-card">
@@ -75,6 +84,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'Home',
   components: {
@@ -103,6 +113,7 @@ export default {
   padding: 14px 80px 18px 36px;
   cursor: pointer;
 }
+
 .home-page-card:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0, 0, 0, .10), 0 4px 8px rgba(0, 0, 0, .06);

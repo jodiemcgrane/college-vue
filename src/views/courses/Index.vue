@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-04-01T12:28:20+01:00
+@Last modified time: 2021-04-01T16:37:04+01:00
 -->
 <template>
 <div class="courses-index">
@@ -10,10 +10,7 @@
       <h2>Courses</h2>
     </b-col>
     <b-col md="3 ml-auto">
-      <b-breadcrumb>
-        <b-breadcrumb-item to="/home">Home</b-breadcrumb-item>
-        <b-breadcrumb-item to="/courses">Courses</b-breadcrumb-item>
-      </b-breadcrumb>
+
     </b-col>
   </b-row>
 

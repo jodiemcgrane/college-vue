@@ -1,6 +1,6 @@
 /**
  * @Date:   2021-02-17T11:08:57+00:00
- * @Last modified time: 2021-03-20T14:42:16+00:00
+ * @Last modified time: 2021-04-01T16:34:35+01:00
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -41,7 +41,7 @@ export default new Router({
     {
       path: '/home',
       name: 'home',
-      component: Home
+      component: Home,
     },
     //coure routes
     {

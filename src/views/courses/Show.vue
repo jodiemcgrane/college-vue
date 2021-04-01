@@ -1,17 +1,18 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-04-01T12:33:13+01:00
+@Last modified time: 2021-04-01T22:01:04+01:00
 -->
 <template>
 <div class="courses-show">
+
   <b-row class="justify-content-center">
     <b-col class="mt-3 mb-3" md="10">
-      <b-card class="courses-show-card">
+      <b-card class="courses-show-card-blue" bg-variant="primary" text-variant="white">
         <div>
           <b-card-text>
             <h2>{{ course.title }}</h2>
 
-            <div class="d-flex mt-3 mb-5 align-items-center">
+            <div class="d-flex mt-4 mb-4 align-items-center">
               <h5>Level: {{ course.level }}</h5>
               <span class="ml-auto">
                 <h5>Points: {{ course.points }}</h5>
@@ -22,7 +23,34 @@
 
             <p>Code: {{ course.code }}</p>
 
-            <b-button @click="showUpdateModal()" pill variant="warning">Update</b-button>
+            <template>
+              <div>
+                <b-row>
+                  <b-col md="6" class="my-1">
+                    <div class="d-flex">
+                      <router-link to="/courses">
+                        <div v-b-hover="handleHover">
+                          <b-icon v-if="isHovered" class="mr-2" icon="arrow-left-circle-fill" font-scale="1.6" style="color: #fff"></b-icon>
+                          <b-icon v-else class="mr-2" icon="arrow-left-circle" font-scale="1.6" style="color: #fff"></b-icon>
+                          Back to Courses
+                        </div>
+                      </router-link>
+                    </div>
+                  </b-col>
+
+                  <b-col class="right">
+                    <b-button @click="showUpdateModal()" class="mr-2" variant="primary" size="sm">
+                      <b-icon icon="pencil-square" font-scale="1.6" style="color: #fff"></b-icon>
+                    </b-button>
+
+                    <b-button @click="showDeleteModal(this.course.id)" variant="primary" size="sm">
+                      <b-icon icon="trash" font-scale="1.6" style="color: #fff"></b-icon>
+                    </b-button>
+                  </b-col>
+                </b-row>
+              </div>
+            </template>
+
           </b-card-text>
         </div>
       </b-card>
@@ -33,36 +61,70 @@
 
   <b-row class="justify-content-center">
     <b-col md="10">
+      <b-card class="courses-show-card mt-5">
 
-      <h5>Enrolments for: {{ course.title }}</h5>
+        <CreateEnrolmentModal ref="CreateEnrolmentModal" />
 
-      <b-table id="course-enrolments-table" class="mt-3" hover :busy="isBusy" :items="enrolments" :fields="fields" :per-page="perPage" :current-page="currentPage" responsive="sm">
+        <DeleteCourseModal ref="DeleteCourseModal" :courseId="selectedCourse" />
 
-        <template #table-busy>
-          <div class="text-center">
-            <b-spinner class="align-middle m-5" style="width: 4rem; height: 4rem;" variant="primary"></b-spinner>
-          </div>
-        </template>
+        <b-row>
+          <b-col md="6" class="my-1">
+            <div class="d-flex">
+              <h5>Enrolments for: {{ course.title }}</h5>
+            </div>
+          </b-col>
 
-        <template #cell(actions)="data">
-
-          <router-link :to="{ name: 'courses_show', params: { id: data.item.id }}">
-            <b-button class="mr-2" variant="primary" size="sm">
-              <b-icon icon="arrow-right-square" font-scale="1.3" style="color: #fff"></b-icon>
+          <b-col class="my-1 right">
+            <b-button class="mb-4" @click="showCreateModal()" variant="primary">
+              <b-icon class="mr-1 mb-1" icon="plus-circle-fill" font-scale="1.3" style="color: #fff"></b-icon>
+              ADD NEW
             </b-button>
-          </router-link>
+          </b-col>
+        </b-row>
 
-          <b-button class="mr-2" variant="warning" size="sm">
-            <b-icon icon="pencil-square" font-scale="1.3" style="color: #fff"></b-icon>
-          </b-button>
+        <b-table id="course-enrolments-table" class="mt-3" hover :busy="isBusy" :items="enrolments" :fields="fields" :per-page="perPage" :current-page="currentPage" responsive="sm">
 
-          <b-button variant="danger" size="sm">
-            <b-icon icon="trash" font-scale="1.3" style="color: #fff"></b-icon>
-          </b-button>
+          <template #table-busy>
+            <div class="text-center">
+              <b-spinner class="align-middle m-5" style="width: 4rem; height: 4rem;" variant="primary"></b-spinner>
+            </div>
+          </template>
 
-        </template>
-      </b-table>
+          <template #cell(actions)="data">
 
+            <router-link :to="{ name: 'enrolments_show', params: { id: data.item.id }}">
+              <b-button class="mr-2" variant="primary" size="sm">
+                <b-icon icon="arrow-right-square" font-scale="1.3" style="color: #fff"></b-icon>
+              </b-button>
+            </router-link>
+
+            <b-button class="mr-2" variant="warning" size="sm">
+              <b-icon icon="pencil-square" font-scale="1.3" style="color: #fff"></b-icon>
+            </b-button>
+
+            <b-button variant="danger" size="sm">
+              <b-icon icon="trash" font-scale="1.3" style="color: #fff"></b-icon>
+            </b-button>
+
+          </template>
+        </b-table>
+
+        <b-row class="mt-4">
+          <b-col md="6" class="my-1">
+            <b-pagination class="custom-pagination" v-model="currentPage" :total-rows="totalRows" :per-page="perPage" aria-controls="courses-table"></b-pagination>
+          </b-col>
+
+          <b-col md="6" class="my-1 ml-auto">
+            <div class="d-flex">
+              <b-col md="10">
+                <p class="mt-2 right">Enrolments / page: </p>
+              </b-col>
+              <b-form-select :options="pageOptions" v-model="perPage" />
+            </div>
+          </b-col>
+        </b-row>
+
+      </b-card>
     </b-col>
   </b-row>
 
@@ -70,13 +132,17 @@
 </template>
 
 <script>
+import CreateEnrolmentModal from '@/components/CreateEnrolmentModal.vue'
 import UpdateCourseModal from '@/components/UpdateCourseModal.vue'
+import DeleteCourseModal from '@/components/DeleteCourseModal.vue'
 import axios from '@/config/api';
 
 export default {
   name: 'CoursesShow',
   components: {
+    CreateEnrolmentModal,
     UpdateCourseModal,
+    DeleteCourseModal
   },
   data() {
     return {
@@ -93,6 +159,8 @@ export default {
       pageOptions: [5, 10, 15, 20, 25],
       course: {},
       enrolments: [],
+      selectedCourse: 0,
+      isHovered: false,
       isBusy: false,
     }
   },
@@ -100,8 +168,18 @@ export default {
     this.getCourse();
   },
   methods: {
+    handleHover(hovered) {
+      this.isHovered = hovered
+    },
+    showCreateModal() {
+      this.$refs.CreateEnrolmentModal.show();
+    },
     showUpdateModal() {
       this.$refs.UpdateCourseModal.show();
+    },
+    showDeleteModal(courseId) {
+      this.selectedCourse = courseId;
+      this.$refs.DeleteCourseModal.show();
     },
     getCourse() {
       let token = localStorage.getItem('token');
@@ -126,11 +204,30 @@ export default {
           this.isBusy = false;
         });
     }
-  }
+  },
+  computed: {
+    totalRows() {
+      return this.enrolments.length
+    }
+  },
 }
 </script>
 
 <style>
+.courses-show-card-blue {
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, .15), 0 0 6px rgba(0, 0, 0, .05);
+  transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+  padding: 14px 36px 18px 36px;
+}
+
+.courses-show-card-blue:hover {
+  transform: scale(1.10);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .10), 0 4px 8px rgba(0, 0, 0, .06);
+  border-color: #0275d8;
+}
+
 .courses-show-card {
   border-radius: 4px;
   background: #fff;

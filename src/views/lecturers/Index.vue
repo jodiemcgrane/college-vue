@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-08T12:13:19+00:00
-@Last modified time: 2021-04-01T12:31:39+01:00
+@Last modified time: 2021-04-01T14:46:58+01:00
 -->
 <template>
 <div class="lecturers-index">
@@ -9,12 +9,12 @@
     <b-col md="4" class="mb-3">
       <h2>Lecturers</h2>
     </b-col>
-    <b-col md="3 ml-auto">
+    <!-- <b-col md="3 ml-auto">
       <b-breadcrumb>
         <b-breadcrumb-item to="/home">Home</b-breadcrumb-item>
         <b-breadcrumb-item to="/lecturers">Lecturers</b-breadcrumb-item>
       </b-breadcrumb>
-    </b-col>
+    </b-col> -->
   </b-row>
 
   <b-card class="lecturers-card">

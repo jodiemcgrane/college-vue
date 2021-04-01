@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T11:01:49+00:00
-@Last modified time: 2021-04-01T13:12:42+01:00
+@Last modified time: 2021-04-01T22:02:09+01:00
 -->
 <template>
 <div>
@@ -72,4 +72,10 @@ p {
 .right {
   text-align: right;
 }
+
+a.router-link-active, a.router-link-active:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
 </style>
