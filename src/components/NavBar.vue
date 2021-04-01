@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T11:32:26+00:00
-@Last modified time: 2021-03-18T15:14:38+00:00
+@Last modified time: 2021-04-01T13:25:28+01:00
 -->
 <template>
 <div>
@@ -8,18 +8,18 @@
   <b-navbar class="main-nav" type="dark" variant="primary">
     <b-navbar-nav class="ml-auto">
 
-      <b-nav-item-dropdown text="User" right>
-        <b-dropdown-item v-if="loggedIn" @click="logout()" to="/">Logout</b-dropdown-item>
+      <b-nav-item-dropdown v-if="loggedIn" text="User" right>
+        <b-dropdown-item @click="logout()" to="/">Logout</b-dropdown-item>
       </b-nav-item-dropdown>
 
       <b-nav-item>
-        <Burger></Burger>
+        <Burger v-if="loggedIn"></Burger>
       </b-nav-item>
 
     </b-navbar-nav>
   </b-navbar>
 
-  <Sidebar>
+  <Sidebar v-if="loggedIn">
     <b-nav vertical class="sidebar-panel-nav mb-5">
 
       <h3 class="mb-5" style="color: #fff">College System</h3>
@@ -40,7 +40,7 @@
           <b-icon class="mr-3" icon="eyeglasses" font-scale="1.2" style="color: #fff"></b-icon>
         </span>Lecturers</b-nav-item>
 
-      <b-nav-item to="/lecturers" class="bottom"><span class="mr-3">
+      <b-nav-item @click="logout()" class="bottom"><span class="mr-3">
           <b-icon class="mr-3" icon="arrow-left" font-scale="1.2" style="color: #fff"></b-icon>
         </span>Sign Out</b-nav-item>
 
@@ -59,13 +59,12 @@ import axios from '@/config/api';
 
 export default {
   name: 'NavBar',
-
+  props: {
+    loggedIn: Boolean
+  },
   components: {
     Burger,
     Sidebar
-  },
-  props: {
-    loggedIn: Boolean,
   },
   methods: {
     logout() {
@@ -78,7 +77,7 @@ export default {
         })
         .then(response => {
           console.log(response.data);
-          //this.$emit('logout');
+          this.$emit('logout');
           this.$router.replace({
             name: 'welcome'
           });

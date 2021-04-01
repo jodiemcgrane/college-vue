@@ -1,16 +1,14 @@
 <!--
 @Date:   2021-02-17T11:01:49+00:00
-@Last modified time: 2021-03-25T19:06:51+00:00
+@Last modified time: 2021-04-01T13:12:42+01:00
 -->
 <template>
 <div>
-  <NavBar :loggedIn="loggedIn" v-on:logout="setLoggedOut"/>
+  <NavBar :loggedIn="this.loggedIn" v-on:login="setLoggedIn" v-on:logout="setLoggedOut" />
 
   <div class="content">
     <b-container>
-
-      <router-view :loggedIn="loggedIn" v-on:login="setLoggedIn" />
-
+      <router-view :loggedIn="this.loggedIn" v-on:login="setLoggedIn" v-on:logout="setLoggedOut" />
     </b-container>
   </div>
 </div>
