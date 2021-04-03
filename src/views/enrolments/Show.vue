@@ -1,23 +1,77 @@
 <!--
 @Date:   2021-03-06T13:26:11+00:00
-@Last modified time: 2021-03-27T13:23:10+00:00
+@Last modified time: 2021-04-03T16:04:06+01:00
 -->
 <template>
 <div class="enrolments-show">
+
   <b-row class="justify-content-center">
-    <b-col class="mt-3 mb-3" md="10">
-      <b-card>
+    <b-col class="mt-3 mb-3" md="6">
+      <b-card class="enrolments-show-card-blue" bg-variant="primary" text-variant="white">
+
         <div>
           <b-card-text>
-            <h2>Enrolment ID: {{ enrolment.id }}</h2>
+            <b-card-text>
+              <h2>Enrolment ID: {{ enrolment.id }}</h2>
+              <div class="border-bottom"></div>
+            </b-card-text>
 
-            <p>Date: {{ enrolment.date }}</p>
-            <p>Time: {{ enrolment.time }}</p>
-            <p>Status: {{ enrolment.status }}</p>
-            <p>Lecturer ID: {{ enrolment.lecturer.id }}</p>
-            <p>Course ID: {{ enrolment.course.id }}</p>
+            <b-card-text>
 
-            <b-button @click="showUpdateModal()" pill variant="warning">Update</b-button>
+              <b-row class="mt-4">
+                <b-col class="ml-4">
+                  <h5>Date: {{ enrolment.date }}</h5>
+                </b-col>
+                <b-col class="ml-4">
+                  <h5>Time: {{ enrolment.time }}</h5>
+                </b-col>
+              </b-row>
+
+
+              <b-row class="my-4">
+                <b-col class="ml-4">
+                  <h5>Status: {{ enrolment.status }}</h5>
+                </b-col>
+              </b-row>
+
+              <b-row class="my-4">
+                <b-col class="ml-4">
+                  <h5>Lecturer ID: {{ enrolment.lecturer.id }}</h5>
+                </b-col>
+                <b-col class="ml-4">
+                  <h5>Course ID: {{ enrolment.course.id }}</h5>
+                </b-col>
+              </b-row>
+
+            </b-card-text>
+
+            <template>
+              <div>
+                <b-row>
+                  <b-col md="6">
+                    <div class="d-flex">
+                      <router-link to="/enrolments">
+                        <div v-b-hover="handleHover">
+                          <b-icon v-if="isHovered" class="mr-2" icon="arrow-left-circle-fill" font-scale="1.6" style="color: #fff"></b-icon>
+                          <b-icon v-else class="mr-2" icon="arrow-left-circle" font-scale="1.6" style="color: #fff"></b-icon>
+                          Back to Enrolments
+                        </div>
+                      </router-link>
+                    </div>
+                  </b-col>
+
+                  <b-col class="right">
+                    <b-button @click="showUpdateEnrolmentModal()" class="mr-2" variant="primary" size="sm">
+                      <b-icon icon="pencil-square" font-scale="1.6" style="color: #fff"></b-icon>
+                    </b-button>
+
+                    <b-button @click="showDeleteEnrolmentModal(this.enrolment.id)" variant="primary" size="sm">
+                      <b-icon icon="trash" font-scale="1.6" style="color: #fff"></b-icon>
+                    </b-button>
+                  </b-col>
+                </b-row>
+              </div>
+            </template>
 
           </b-card-text>
         </div>
@@ -29,24 +83,97 @@
 
   <b-row class="justify-content-center">
     <b-col class="mt-3" sm="5">
-      <b-card>
+
+      <b-card class="enrolments-show-card">
+        <b-row>
+          <h3>{{ enrolment.course.title }}</h3>
+          <b-col class="right">
+            <p class="mt-2">ID: {{ enrolment.course.id }}</p>
+          </b-col>
+          <div class="border-bottom-black"></div>
+        </b-row>
+
         <b-card-text>
-          <h2>Course ID: {{ enrolment.course.id }}</h2>
-          <p>Title: {{ enrolment.course.title }}</p>
-          <p>Code: {{ enrolment.course.code }}</p>
-          <p>Points: {{ enrolment.course.points }}</p>
-          <p>Level: {{ enrolment.course.level }}</p>
+          <b-row class="mt-4">
+            <h5>Code: {{ enrolment.course.code }}</h5>
+          </b-row>
+          <b-row class="my-3">
+            <h5>Points: {{ enrolment.course.points }}</h5>
+          </b-row>
+          <b-row class="mb-3">
+            <h5>Level: {{ enrolment.course.level }}</h5>
+          </b-row>
+
+          <template>
+            <div>
+              <b-row>
+                <b-col class="my-1">
+                  <div class="d-flex">
+                    <b-button to="/courses" pill variant="primary" btn-sm>View All</b-button>
+                  </div>
+                </b-col>
+
+                <b-col class="right mt-1">
+                  <b-button @click="showUpdateCourseModal()" class="mr-2" variant="warning" size="sm">
+                    <b-icon icon="pencil-square" font-scale="1.6" style="color: #fff"></b-icon>
+                  </b-button>
+
+                  <b-button @click="showDeleteCourseModal()" variant="danger" size="sm">
+                    <b-icon icon="trash" font-scale="1.6" style="color: #fff"></b-icon>
+                  </b-button>
+                </b-col>
+              </b-row>
+            </div>
+          </template>
+
         </b-card-text>
       </b-card>
     </b-col>
 
     <b-col class="mt-3" sm="5">
-      <b-card>
+      <b-card class="enrolments-show-card">
+
+        <b-row>
+          <h3>{{ enrolment.lecturer.name }}</h3>
+          <b-col class="right">
+            <p class="mt-2">ID: {{ enrolment.lecturer.id }}</p>
+          </b-col>
+          <div class="border-bottom-black"></div>
+        </b-row>
+
         <b-card-text>
-          <h2>Lecturer ID: {{ enrolment.lecturer.id }}</h2>
-          <p>Name: {{ enrolment.lecturer.name }}</p>
-          <p>E-mail: {{ enrolment.lecturer.email }}</p>
-          <p>Phone No: {{ enrolment.lecturer.phone }}</p>
+          <b-row class="mt-4">
+            <h5>E-mail: {{ enrolment.lecturer.email }}</h5>
+          </b-row>
+          <b-row class="my-3">
+            <h5>Phone No: {{ enrolment.lecturer.phone }}</h5>
+          </b-row>
+          <b-row class="mb-5">
+
+          </b-row>
+
+          <template>
+            <div>
+              <b-row>
+                <b-col class="my-1">
+                  <div class="d-flex">
+                    <b-button to="/lecturers" pill variant="primary" btn-sm>View All</b-button>
+                  </div>
+                </b-col>
+
+                <b-col class="right mt-1">
+                  <b-button @click="showUpdateLecturerModal()" class="mr-2" variant="warning" size="sm">
+                    <b-icon icon="pencil-square" font-scale="1.5" style="color: #fff"></b-icon>
+                  </b-button>
+
+                  <b-button @click="showDeleteLecturerModal()" variant="danger" size="sm">
+                    <b-icon icon="trash" font-scale="1.5" style="color: #fff"></b-icon>
+                  </b-button>
+                </b-col>
+              </b-row>
+            </div>
+          </template>
+
         </b-card-text>
       </b-card>
     </b-col>
@@ -67,13 +194,17 @@ export default {
   data() {
     return {
       enrolment: {},
+      isHovered: false,
     }
   },
   mounted() {
     this.getEnrolment();
   },
   methods: {
-    showUpdateModal() {
+    handleHover(hovered) {
+      this.isHovered = hovered
+    },
+    showUpdateEnrolmentModal() {
       this.$refs.UpdateEnrolmentModal.show();
     },
     getEnrolment() {
@@ -98,9 +229,42 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+.enrolments-show-card-blue {
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, .15), 0 0 6px rgba(0, 0, 0, .05);
+  transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+  padding: 14px 36px 18px 36px;
+}
+
+.enrolments-show-card-blue:hover {
+  transform: scale(1.10);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .10), 0 4px 8px rgba(0, 0, 0, .06);
+  border-color: #0275d8;
+}
+
+.border-bottom {
+  width: 425px;
+  position: relative;
+  border-bottom: 1px solid #fff;
+}
+
+.border-bottom-black {
+  width: 340px;
+  position: relative;
+  border-bottom: 1px solid #282828;
+}
+
 .card {
   height: 100%;
 }
 
+.enrolments-show-card {
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+  transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+  padding: 14px 36px 18px 36px;
+}
 </style>

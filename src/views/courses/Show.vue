@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-04-01T22:01:04+01:00
+@Last modified time: 2021-04-03T16:03:35+01:00
 -->
 <template>
 <div class="courses-show">
@@ -8,20 +8,28 @@
   <b-row class="justify-content-center">
     <b-col class="mt-3 mb-3" md="10">
       <b-card class="courses-show-card-blue" bg-variant="primary" text-variant="white">
+
         <div>
           <b-card-text>
             <h2>{{ course.title }}</h2>
+            <div class="border-bottom"></div>
 
-            <div class="d-flex mt-4 mb-4 align-items-center">
+            <div class="d-flex mt-5 mb-4 align-items-center">
               <h5>Level: {{ course.level }}</h5>
               <span class="ml-auto">
                 <h5>Points: {{ course.points }}</h5>
               </span>
             </div>
+          </b-card-text>
 
-            <p>{{ course.description }}</p>
+          <b-card-text>
+            <div class="mr-5">
+              <p>{{ course.description }}</p>
+            </div>
 
-            <p>Code: {{ course.code }}</p>
+            <div class="my-4">
+              <h5>Code: {{ course.code }}</h5>
+            </div>
 
             <template>
               <div>
@@ -43,7 +51,7 @@
                       <b-icon icon="pencil-square" font-scale="1.6" style="color: #fff"></b-icon>
                     </b-button>
 
-                    <b-button @click="showDeleteModal(this.course.id)" variant="primary" size="sm">
+                    <b-button @click="showDeleteCourseModal()" variant="primary" size="sm">
                       <b-icon icon="trash" font-scale="1.6" style="color: #fff"></b-icon>
                     </b-button>
                   </b-col>
@@ -59,13 +67,13 @@
 
   <UpdateCourseModal ref="UpdateCourseModal" :updateCourseData="course" />
 
+  <DeleteCourseModal ref="DeleteCourseModal" :courseId="selectedCourse" />
+
   <b-row class="justify-content-center">
     <b-col md="10">
       <b-card class="courses-show-card mt-5">
 
         <CreateEnrolmentModal ref="CreateEnrolmentModal" />
-
-        <DeleteCourseModal ref="DeleteCourseModal" :courseId="selectedCourse" />
 
         <b-row>
           <b-col md="6" class="my-1">
@@ -98,16 +106,20 @@
               </b-button>
             </router-link>
 
-            <b-button class="mr-2" variant="warning" size="sm">
-              <b-icon icon="pencil-square" font-scale="1.3" style="color: #fff"></b-icon>
-            </b-button>
+            <router-link :to="{ name: 'enrolments_edit', params: { id: data.item.id }}">
+              <b-button class="mr-2" variant="warning" size="sm">
+                <b-icon icon="pencil-square" font-scale="1.3" style="color: #fff"></b-icon>
+              </b-button>
+            </router-link>
 
             <b-button variant="danger" size="sm">
-              <b-icon icon="trash" font-scale="1.3" style="color: #fff"></b-icon>
+              <b-icon @click="showDeleteEnrolmentModal(data.item.id)" icon="trash" font-scale="1.3" style="color: #fff"></b-icon>
             </b-button>
 
           </template>
         </b-table>
+
+        <DeleteEnrolmentModal ref="DeleteEnrolmentModal" :enrolmentId="selectedEnrolment" />
 
         <b-row class="mt-4">
           <b-col md="6" class="my-1">
@@ -132,17 +144,20 @@
 </template>
 
 <script>
-import CreateEnrolmentModal from '@/components/CreateEnrolmentModal.vue'
 import UpdateCourseModal from '@/components/UpdateCourseModal.vue'
 import DeleteCourseModal from '@/components/DeleteCourseModal.vue'
+import CreateEnrolmentModal from '@/components/CreateEnrolmentModal.vue'
+import DeleteEnrolmentModal from '@/components/DeleteEnrolmentModal.vue'
+
 import axios from '@/config/api';
 
 export default {
   name: 'CoursesShow',
   components: {
-    CreateEnrolmentModal,
     UpdateCourseModal,
-    DeleteCourseModal
+    DeleteCourseModal,
+    CreateEnrolmentModal,
+    DeleteEnrolmentModal,
   },
   data() {
     return {
@@ -160,6 +175,7 @@ export default {
       course: {},
       enrolments: [],
       selectedCourse: 0,
+      selectedEnrolment: 0,
       isHovered: false,
       isBusy: false,
     }
@@ -171,15 +187,19 @@ export default {
     handleHover(hovered) {
       this.isHovered = hovered
     },
-    showCreateModal() {
-      this.$refs.CreateEnrolmentModal.show();
-    },
     showUpdateModal() {
       this.$refs.UpdateCourseModal.show();
     },
-    showDeleteModal(courseId) {
+    showDeleteCourseModal(courseId) {
       this.selectedCourse = courseId;
       this.$refs.DeleteCourseModal.show();
+    },
+    showCreateModal() {
+      this.$refs.CreateEnrolmentModal.show();
+    },
+    showDeleteEnrolmentModal(enrolmentId) {
+      this.selectedEnrolment = enrolmentId;
+      this.$refs.DeleteEnrolmentModal.show();
     },
     getCourse() {
       let token = localStorage.getItem('token');
@@ -226,6 +246,12 @@ export default {
   transform: scale(1.10);
   box-shadow: 0 10px 20px rgba(0, 0, 0, .10), 0 4px 8px rgba(0, 0, 0, .06);
   border-color: #0275d8;
+}
+
+.border-bottom {
+  width: 770px;
+  position: relative;
+  border-bottom: 1px solid #fff;
 }
 
 .courses-show-card {

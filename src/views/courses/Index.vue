@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-04-01T16:37:04+01:00
+@Last modified time: 2021-04-03T15:43:13+01:00
 -->
 <template>
 <div class="courses-index">
@@ -52,11 +52,11 @@
           </b-button>
         </router-link>
 
-        <b-button class="mr-2" variant="warning" size="sm">
-          <router-link :to="{name: 'courses_edit', params: { id: data.item.id }}">
+        <router-link :to="{name: 'courses_edit', params: { id: data.item.id }}">
+          <b-button class="mr-2" variant="warning" size="sm">
             <b-icon icon="pencil-square" font-scale="1.3" style="color: #fff"></b-icon>
-          </router-link>
-        </b-button>
+          </b-button>
+        </router-link>
 
         <b-button variant="danger" size="sm">
           <b-icon @click="showDeleteModal(data.item.id)" icon="trash" font-scale="1.3" style="color: #fff"></b-icon>

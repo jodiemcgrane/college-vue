@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T11:01:49+00:00
-@Last modified time: 2021-04-01T22:02:09+01:00
+@Last modified time: 2021-04-02T10:06:51+01:00
 -->
 <template>
 <div>
@@ -71,6 +71,10 @@ p {
 
 .right {
   text-align: right;
+}
+
+.left {
+  text-align: left;
 }
 
 a.router-link-active, a.router-link-active:hover {
