@@ -1,6 +1,6 @@
 /**
  * @Date:   2021-02-17T11:01:49+00:00
- * @Last modified time: 2021-03-05T18:18:54+00:00
+ * @Last modified time: 2021-04-05T15:09:27+01:00
  */
 
 import Vue from 'vue'
@@ -12,8 +12,11 @@ import 'bootstrap-vue/dist/bootstrap-vue'
 
 import router from './router'
 
+import Vuelidate from 'vuelidate'
+
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
+Vue.use(Vuelidate)
 
 Vue.config.productionTip = false
 
