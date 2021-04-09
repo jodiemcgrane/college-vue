@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-04-03T16:03:35+01:00
+@Last modified time: 2021-04-09T16:15:53+01:00
 -->
 <template>
 <div class="courses-show">
@@ -260,5 +260,10 @@ export default {
   box-shadow: 0 6px 8px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
   transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
   padding: 14px 36px 18px 36px;
+}
+
+a.router-link-active, a.router-link-active:hover {
+  color: #fff;
+  text-decoration: none;
 }
 </style>
