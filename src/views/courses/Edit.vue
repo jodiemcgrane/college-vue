@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-02T10:01:10+00:00
-@Last modified time: 2021-04-09T16:53:37+01:00
+@Last modified time: 2021-04-09T18:05:44+01:00
 -->
 <template lang="html">
   <div class="courses-edit">
@@ -25,8 +25,9 @@
 
 <b-row class="mt-5 justify-content-center">
     <b-col md="10">
+      
+      <b-overlay :show="show" rounded="sm">
     <b-card class="edit-courses-card">
-
       <b-row class="mb-4">
         <b-col md="8" class="my-1">
             <h3>Edit Course: {{ form.title }}</h3>
@@ -39,7 +40,8 @@
           <b-form>
             <div class="wrap-input">
               <b-form-group label="Title">
-                <b-form-input type="text" v-model="form.title" />
+                <b-form-input type="text" v-model="form.title">
+              </b-form-input>
               </b-form-group>
             </div>
 
@@ -73,6 +75,8 @@
       </b-row>
 
     </b-card>
+    </b-overlay>
+
   </b-col>
 </b-row>
   </div>
@@ -96,6 +100,7 @@ export default {
         level: "",
       },
       isHovered: false,
+      show: false,
       errors: {}
     }
   },
@@ -108,6 +113,8 @@ export default {
     },
     getCourse() {
       let token = localStorage.getItem('token');
+
+      this.show = true;
 
       axios.get(`/courses/${this.$route.params.id}`, {
           headers: {
@@ -126,6 +133,9 @@ export default {
           console.log(error)
           console.log(error.response.data)
         })
+        .finally(() => {
+          this.show = false;
+        });
     },
     updateCourse() {
       let token = localStorage.getItem('token');

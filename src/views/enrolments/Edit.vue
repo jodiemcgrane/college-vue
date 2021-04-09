@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-20T14:26:09+00:00
-@Last modified time: 2021-04-09T17:33:22+01:00
+@Last modified time: 2021-04-09T18:07:27+01:00
 -->
 <template lang="html">
   <div class="enrolments-edit">
@@ -25,6 +25,8 @@
 
     <b-row class="mt-5 justify-content-center">
       <b-col md="10">
+
+        <b-overlay :show="show" rounded="sm">
         <b-card class="edit-enrolments-card">
 
           <b-row class="mb-5">
@@ -76,6 +78,8 @@
         </b-row>
 
       </b-card>
+      </b-overlay>
+
       </b-col>
     </b-row>
   </div>
@@ -100,6 +104,7 @@ export default {
       },
       courses: [],
       lecturers: [],
+      show: false,
       errors: {}
     }
   },
@@ -111,6 +116,8 @@ export default {
   methods: {
     getEnrolment() {
       let token = localStorage.getItem('token');
+
+      this.show = true;
 
       axios.get(`/enrolments/${this.$route.params.id}`, {
           headers: {
@@ -129,6 +136,9 @@ export default {
           console.log(error)
           console.log(error.response.data)
         })
+        .finally(() => {
+          this.show = false;
+        });
     },
     updateEnrolment() {
       let token = localStorage.getItem('token');

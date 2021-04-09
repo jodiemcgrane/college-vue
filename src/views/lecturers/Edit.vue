@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-20T14:42:29+00:00
-@Last modified time: 2021-03-27T12:55:32+00:00
+@Last modified time: 2021-04-09T18:08:11+01:00
 -->
 <template lang="html">
   <div>
@@ -51,6 +51,7 @@ export default {
         email: "",
         phone: "",
       },
+      show: false,
       errors: {}
     }
   },
@@ -81,6 +82,8 @@ export default {
     updateLecturer() {
       let token = localStorage.getItem('token');
 
+      this.show = true;
+
       axios.put(`/lecturers/${this.$route.params.id}`, {
           name: this.form.name,
           address: this.form.address,
@@ -104,6 +107,9 @@ export default {
             this.errors = error.response.data.errors
           }
         })
+        .finally(() => {
+          this.show = false;
+        });
     }
   },
 }
