@@ -1,13 +1,43 @@
 <!--
 @Date:   2021-03-20T14:42:29+00:00
-@Last modified time: 2021-04-09T18:08:11+01:00
+@Last modified time: 2021-04-10T15:36:16+01:00
 -->
 <template lang="html">
-  <div>
-    <b-row>
+  <div class="lecturers-edit">
+
+    <b-row class="justify-content-center">
+      <b-col md="12">
+      <router-link to="/lecturers">
+        <div v-b-hover="handleHover">
+          <div class="d-flex">
+            <b-icon v-if="isHovered" class="mr-2" icon="arrow-left-circle-fill" font-scale="1.6" style="color: #383f45"></b-icon>
+            <b-icon v-else class="mr-2" icon="arrow-left-circle" font-scale="1.6" style="color: #212529"></b-icon>
+            <span>
+              <div  class="heavy" style="color: #212529">
+                Back to Lecturers
+              </div>
+            </span>
+          </div>
+        </div>
+      </router-link>
+    </b-col>
+    </b-row>
+
+    <b-row class="mt-5 justify-content-center">
       <b-col md="6">
+
+        <b-overlay :show="show" rounded="sm" spinner-variant="primary">
+          <b-card class="edit-lecturers-card">
+
+            <b-row class="mb-4">
+              <b-col md="10" class="my-1">
+                  <h3>Edit Lecturer: {{ form.name }}</h3>
+                  <div class="border-bottom-black"></div>
+              </b-col>
+            </b-row>
+
         <b-form>
-          <div class="wrap-input">
+          <div>
             <b-form-group label="Name">
               <b-form-input type="text" v-model="form.name" />
             </b-form-group>
@@ -25,13 +55,16 @@
             <b-form-input type="text" v-model="form.phone" />
           </b-form-group>
         </b-form>
+
+        <b-row class="justify-content-center mt-3">
+          <b-button @click="updateLecturer()" class="update-pill-button heavy" pill variant="warning">Update</b-button>
+        </b-row>
+
+        </b-card>
+        </b-overlay>
+
       </b-col>
     </b-row>
-
-    <b-row>
-      <b-button @click="updateLecturer()" pill variant="warning">Update</b-button>
-    </b-row>
-
   </div>
 </template>
 
@@ -51,6 +84,7 @@ export default {
         email: "",
         phone: "",
       },
+      isHovered: false,
       show: false,
       errors: {}
     }
@@ -59,8 +93,13 @@ export default {
     this.getLecturer();
   },
   methods: {
+    handleHover(hovered) {
+      this.isHovered = hovered
+    },
     getLecturer() {
       let token = localStorage.getItem('token');
+
+      this.show = true;
 
       axios.get(`/lecturers/${this.$route.params.id}`, {
           headers: {
@@ -78,6 +117,9 @@ export default {
           console.log(error)
           console.log(error.response.data)
         })
+        .finally(() => {
+          this.show = false;
+        });
     },
     updateLecturer() {
       let token = localStorage.getItem('token');
@@ -115,5 +157,29 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style>
+.edit-lecturers-card {
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+  transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+  padding: 14px 36px 18px 36px;
+}
+
+.border-bottom-black {
+  width: 440px;
+  position: relative;
+  border-bottom: 1px solid #282828;
+}
+
+.update-pill-button {
+  height: 50px;
+  width: 25%;
+}
+
+.heavy {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
 </style>

@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-02T10:01:10+00:00
-@Last modified time: 2021-04-09T18:05:44+01:00
+@Last modified time: 2021-04-10T15:25:51+01:00
 -->
 <template lang="html">
   <div class="courses-edit">
@@ -25,8 +25,8 @@
 
 <b-row class="mt-5 justify-content-center">
     <b-col md="10">
-      
-      <b-overlay :show="show" rounded="sm">
+
+      <b-overlay :show="show" rounded="sm" spinner-variant="primary">
     <b-card class="edit-courses-card">
       <b-row class="mb-4">
         <b-col md="8" class="my-1">
