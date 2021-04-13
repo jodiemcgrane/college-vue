@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-23T10:18:03+00:00
-@Last modified time: 2021-03-26T15:34:33+00:00
+@Last modified time: 2021-04-13T15:03:04+01:00
 -->
 <template>
 <div class="delete-lecturer-modal">
@@ -62,6 +62,9 @@ export default {
         })
         .then(response => {
           console.log(response.data);
+          this.$router.replace({
+            name: 'lecturers_index'
+          });
         })
         .catch(error => {
           console.log(error)

@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-04-09T16:15:53+01:00
+@Last modified time: 2021-04-13T14:47:27+01:00
 -->
 <template>
 <div class="courses-show">
@@ -51,7 +51,7 @@
                       <b-icon icon="pencil-square" font-scale="1.6" style="color: #fff"></b-icon>
                     </b-button>
 
-                    <b-button @click="showDeleteCourseModal()" variant="primary" size="sm">
+                    <b-button @click="showDeleteCourseModal(course.id)" variant="primary" size="sm">
                       <b-icon icon="trash" font-scale="1.6" style="color: #fff"></b-icon>
                     </b-button>
                   </b-col>

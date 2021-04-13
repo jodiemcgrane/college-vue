@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-06T13:26:11+00:00
-@Last modified time: 2021-04-09T17:35:20+01:00
+@Last modified time: 2021-04-13T14:58:02+01:00
 -->
 <template>
 <div class="enrolments-show">
@@ -65,13 +65,15 @@
                       <b-icon icon="pencil-square" font-scale="1.6" style="color: #fff"></b-icon>
                     </b-button>
 
-                    <b-button @click="showDeleteEnrolmentModal(this.enrolment.id)" variant="primary" size="sm">
+                    <b-button @click="showDeleteEnrolmentModal(enrolment.id)" variant="primary" size="sm">
                       <b-icon icon="trash" font-scale="1.6" style="color: #fff"></b-icon>
                     </b-button>
                   </b-col>
                 </b-row>
               </div>
             </template>
+
+            <DeleteEnrolmentModal ref="DeleteEnrolmentModal" :enrolmentId="selectedEnrolment" />
 
           </b-card-text>
         </div>
@@ -184,17 +186,20 @@
 
 <script>
 import UpdateEnrolmentModal from '@/components/UpdateEnrolmentModal.vue'
+import DeleteEnrolmentModal from '@/components/DeleteEnrolmentModal.vue'
 import axios from '@/config/api';
 
 export default {
   name: 'EnrolmentsShow',
   components: {
     UpdateEnrolmentModal,
+    DeleteEnrolmentModal,
   },
   data() {
     return {
       enrolment: {},
       isHovered: false,
+      selectedEnrolment: 0,
     }
   },
   mounted() {
@@ -206,6 +211,10 @@ export default {
     },
     showUpdateEnrolmentModal() {
       this.$refs.UpdateEnrolmentModal.show();
+    },
+    showDeleteEnrolmentModal(enrolmentId) {
+      this.selectedEnrolment = enrolmentId;
+      this.$refs.DeleteEnrolmentModal.show();
     },
     getEnrolment() {
       let token = localStorage.getItem('token');
@@ -244,11 +253,11 @@ export default {
   border-color: #0275d8;
 }
 
-.border-bottom {
+/* .border-bottom {
   width: 420px;
   position: relative;
   border-bottom: 1px solid #fff;
-}
+} */
 
 .border-bottom-black {
   width: 300px;

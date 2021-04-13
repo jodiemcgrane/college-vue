@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-08T12:13:24+00:00
-@Last modified time: 2021-04-03T16:10:39+01:00
+@Last modified time: 2021-04-13T15:02:00+01:00
 -->
 <template>
 <div class="lecturers-show">
@@ -50,13 +50,15 @@
                       <b-icon icon="pencil-square" font-scale="1.6" style="color: #fff"></b-icon>
                     </b-button>
 
-                    <b-button @click="showDeleteModal(this.lecturer.id)" variant="primary" size="sm">
+                    <b-button @click="showDeleteLecturerModal(lecturer.id)" variant="primary" size="sm">
                       <b-icon icon="trash" font-scale="1.6" style="color: #fff"></b-icon>
                     </b-button>
                   </b-col>
                 </b-row>
               </div>
             </template>
+
+            <DeleteLecturerModal ref="DeleteLecturerModal" :lecturerId="selectedLecturer" />
 
           </b-card-text>
         </div>
@@ -191,6 +193,10 @@ export default {
     },
     showUpdateLecturerModal() {
       this.$refs.UpdateLecturerModal.show();
+    },
+    showDeleteLecturerModal(lecturerId) {
+      this.selectedLecturer = lecturerId;
+      this.$refs.DeleteLecturerModal.show();
     },
     showCreateModal() {
       this.$refs.CreateEnrolmentModal.show();

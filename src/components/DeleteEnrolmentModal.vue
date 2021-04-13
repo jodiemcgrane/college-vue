@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-24T16:50:35+00:00
-@Last modified time: 2021-03-26T15:34:51+00:00
+@Last modified time: 2021-04-13T14:59:02+01:00
 -->
 <template>
 <div class="delete-enrolment-modal">
@@ -63,6 +63,9 @@ export default {
         })
         .then(response => {
           console.log(response.data);
+          this.$router.replace({
+            name: 'enrolments_index'
+          });
         })
         .catch(error => {
           console.log(error)

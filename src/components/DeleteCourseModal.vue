@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-19T13:48:26+00:00
-@Last modified time: 2021-03-24T18:00:20+00:00
+@Last modified time: 2021-04-13T14:58:50+01:00
 -->
 <template>
 <div class="delete-course-modal">
@@ -62,6 +62,9 @@ export default {
         })
         .then(response => {
           console.log(response.data);
+          this.$router.replace({
+            name: 'courses_index'
+          });
         })
         .catch(error => {
           console.log(error)
