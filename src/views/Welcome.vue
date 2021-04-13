@@ -1,11 +1,11 @@
 <!--
 @Date:   2021-02-23T09:26:27+00:00
-@Last modified time: 2021-02-23T09:32:12+00:00
+@Last modified time: 2021-04-13T10:17:43+01:00
 -->
 <template>
 <div>
 
-  <LoginForm />
+  <LoginForm v-on:login="setLoggedIn" />
 
 </div>
 </template>
@@ -19,6 +19,11 @@ export default {
   components: {
     LoginForm,
   },
+  methods: {
+    setLoggedIn(){
+      this.$emit('login');
+    }
+  }
 }
 </script>
 

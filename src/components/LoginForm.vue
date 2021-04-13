@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-19T14:03:38+00:00
-@Last modified time: 2021-04-05T16:42:40+01:00
+@Last modified time: 2021-04-10T15:59:28+01:00
 -->
 <template>
 <b-row>
@@ -21,13 +21,10 @@
         <b-form @submit.prevent="login()">
           <b-form-group label="Email Address">
             <b-form-input type="email" v-model="form.email" placeholder="example@email.com" />
-            <span v-if="(!$v.email.required || !$v.email.email) && $v.email.$dirty" class="text-danger">Email field is required.</span>
           </b-form-group>
 
-          <b-form-group class="mb-4" label="Password" :class="{ 'form-group--error': $v.password.$error }">
+          <b-form-group class="mb-4" label="Password">
             <b-form-input type="password" v-model="form.password" />
-            <span v-if="!$v.password.required && $v.password.$dirty" class="text-danger">Password field is required.</span>
-            <span v-if="!$v.password.minLength && $v.password.$dirty" class="text-danger">Password must be at least {{ $v.password.$params.minLength.min}} characters.</span>
           </b-form-group>
 
           <div class="d-flex mb-5 align-items-center">
@@ -54,12 +51,12 @@
 
 <script>
 import axios from '@/config/api';
-import {
-  required,
-  minLength,
-  maxLength,
-  email,
-} from 'vuelidate/lib/validators'
+// import {
+//   required,
+//   minLength,
+//   maxLength,
+//   email,
+// } from 'vuelidate/lib/validators'
 
 export default {
   name: 'LoginForm',
@@ -74,28 +71,8 @@ export default {
       }
     }
   },
-  validations: {
-    email: {
-      required,
-      email
-    },
-    password: {
-      required,
-      maxLength: maxLength(12),
-      minLength: minLength(6)
-    },
-  },
   methods: {
     login() {
-      this.$v.$touch();
-
-      if (!this.$v.$invalid) {
-        // console.log(
-        //   `Email: ${this.email}, Password: ${this.password}`
-        // );
-        return;
-      }
-
       axios.post('/login', {
           email: this.form.email,
           password: this.form.password
