@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-20T16:42:32+00:00
-@Last modified time: 2021-03-18T15:16:24+00:00
+@Last modified time: 2021-04-13T15:08:59+01:00
 -->
 <template>
   <b-row class="justify-content-center">
@@ -27,7 +27,7 @@
               </b-form-group>
 
               <div class="d-flex mb-5 align-items-center">
-                <p>Already a member? <strong><router-link :to="{ name: 'home'}">Sign in</router-link></strong></p>
+                <p>Already a member? <strong><router-link :to="{ name: 'welcome'}">Sign in</router-link></strong></p>
               </div>
 
               <b-button @click="register()" pill variant="primary">Register</b-button>
@@ -93,5 +93,4 @@ export default {
   padding: 60px;
   box-shadow: 0 2px 3px 0 rgb(0 0 0 / 10%);
 }
-
 </style>

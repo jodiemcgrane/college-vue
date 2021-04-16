@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-06T13:26:11+00:00
-@Last modified time: 2021-04-13T14:58:02+01:00
+@Last modified time: 2021-04-16T17:37:36+01:00
 -->
 <template>
 <div class="enrolments-show">
@@ -120,13 +120,17 @@
                     <b-icon icon="pencil-square" font-scale="1.6" style="color: #fff"></b-icon>
                   </b-button>
 
-                  <b-button @click="showDeleteCourseModal()" variant="danger" size="sm">
+                  <b-button @click="showDeleteCourseModal(enrolment.course.id)" variant="danger" size="sm">
                     <b-icon icon="trash" font-scale="1.6" style="color: #fff"></b-icon>
                   </b-button>
                 </b-col>
               </b-row>
             </div>
           </template>
+
+          <UpdateCourseModal ref="UpdateCourseModal" :updateCourseData="course" />
+
+          <DeleteCourseModal ref="DeleteCourseModal" :courseId="selectedCourse" />
 
         </b-card-text>
       </b-card>
@@ -168,13 +172,17 @@
                     <b-icon icon="pencil-square" font-scale="1.5" style="color: #fff"></b-icon>
                   </b-button>
 
-                  <b-button @click="showDeleteLecturerModal()" variant="danger" size="sm">
+                  <b-button @click="showDeleteLecturerModal(enrolment.lecturer.id)" variant="danger" size="sm">
                     <b-icon icon="trash" font-scale="1.5" style="color: #fff"></b-icon>
                   </b-button>
                 </b-col>
               </b-row>
             </div>
           </template>
+
+          <UpdateLecturerModal ref="UpdateLecturerModal" :updateLecturerData="lecturer" />
+
+          <DeleteLecturerModal ref="DeleteLecturerModal" :lecturerId="selectedLecturer" />
 
         </b-card-text>
       </b-card>
@@ -187,6 +195,13 @@
 <script>
 import UpdateEnrolmentModal from '@/components/UpdateEnrolmentModal.vue'
 import DeleteEnrolmentModal from '@/components/DeleteEnrolmentModal.vue'
+
+import UpdateCourseModal from '@/components/UpdateCourseModal.vue'
+import DeleteCourseModal from '@/components/DeleteCourseModal.vue'
+
+import UpdateLecturerModal from '@/components/UpdateLecturerModal.vue'
+import DeleteLecturerModal from '@/components/DeleteLecturerModal.vue'
+
 import axios from '@/config/api';
 
 export default {
@@ -194,12 +209,20 @@ export default {
   components: {
     UpdateEnrolmentModal,
     DeleteEnrolmentModal,
+    UpdateCourseModal,
+    DeleteCourseModal,
+    UpdateLecturerModal,
+    DeleteLecturerModal,
   },
   data() {
     return {
       enrolment: {},
       isHovered: false,
       selectedEnrolment: 0,
+      course: {},
+      lecturer: {},
+      selectedCourse: 0,
+      selectedLecturer: 0,
     }
   },
   mounted() {
@@ -216,6 +239,20 @@ export default {
       this.selectedEnrolment = enrolmentId;
       this.$refs.DeleteEnrolmentModal.show();
     },
+    showUpdateCourseModal() {
+      this.$refs.UpdateCourseModal.show();
+    },
+    showDeleteCourseModal(courseId) {
+      this.selectedCourse = courseId;
+      this.$refs.DeleteCourseModal.show();
+    },
+    showUpdateLecturerModal() {
+      this.$refs.UpdateLecturerModal.show();
+    },
+    showDeleteLecturerModal(lecturerId) {
+      this.selectedLecturer = lecturerId;
+      this.$refs.DeleteLecturerModal.show();
+    },
     getEnrolment() {
       let token = localStorage.getItem('token');
 
@@ -227,6 +264,8 @@ export default {
         .then(response => {
           console.log(response.data);
           this.enrolment = response.data.data;
+          this.course = response.data.data.course;
+          this.lecturer = response.data.data.lecturer;
 
         })
         .catch(error => {
