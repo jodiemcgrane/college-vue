@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T11:32:26+00:00
-@Last modified time: 2021-04-17T19:53:46+01:00
+@Last modified time: 2021-04-17T20:48:57+01:00
 -->
 <template>
 <div>
@@ -27,19 +27,19 @@
 
       <h3 class="ml-3 mb-5" style="color: #fff">Menu</h3>
 
-      <b-nav-item to="/home" class="mt-1 mb-1"><span class="mr-3">
+      <b-nav-item to="/home" @click="closeSidebarPanel" class="mt-1 mb-1"><span class="mr-3">
           <b-icon class="mr-3" icon="house" font-scale="1.2" style="color: #fff"></b-icon>
         </span>Home</b-nav-item>
 
-      <b-nav-item to="/courses" class="mt-1 mb-1"><span class="mr-3">
+      <b-nav-item to="/courses" @click="closeSidebarPanel" class="mt-1 mb-1"><span class="mr-3">
           <b-icon class="mr-3" icon="file-earmark-text" font-scale="1.2" style="color: #fff"></b-icon>
         </span>Courses</b-nav-item>
 
-      <b-nav-item to="/enrolments" class="mt-1 mb-1"><span class="mr-3">
+      <b-nav-item to="/enrolments" @click="closeSidebarPanel" class="mt-1 mb-1"><span class="mr-3">
           <b-icon class="mr-3" icon="files" font-scale="1.2" style="color: #fff"></b-icon>
         </span>Enrolments</b-nav-item>
 
-      <b-nav-item to="/lecturers" class="mt-1 mb-1"><span class="mr-3">
+      <b-nav-item to="/lecturers" @click="closeSidebarPanel" class="mt-1 mb-1"><span class="mr-3">
           <b-icon class="mr-3" icon="eyeglasses" font-scale="1.2" style="color: #fff"></b-icon>
         </span>Lecturers</b-nav-item>
 
@@ -57,6 +57,9 @@
 import Burger from './menu/Burger.vue';
 import Sidebar from './menu/Sidebar.vue';
 
+import {
+  mutations
+} from '@/store.js'
 
 import axios from '@/config/api';
 
@@ -70,6 +73,7 @@ export default {
     Sidebar
   },
   methods: {
+    closeSidebarPanel: mutations.toggleNav,
     logout() {
       let token = localStorage.getItem('token')
 
