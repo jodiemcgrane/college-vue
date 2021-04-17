@@ -1,16 +1,21 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-04-03T15:43:13+01:00
+@Last modified time: 2021-04-17T20:03:03+01:00
 -->
 <template>
 <div class="courses-index">
 
   <b-row class="mb-2">
     <b-col md="4" class="mb-3">
-      <h2>Courses</h2>
+      <h2>Courses Page<span>
+          <b-icon class="ml-2" icon="file-earmark-text" font-scale="1.2"></b-icon>
+        </span></h2>
     </b-col>
     <b-col md="3 ml-auto">
-
+      <b-breadcrumb>
+        <b-breadcrumb-item to="/home">Home</b-breadcrumb-item>
+        <b-breadcrumb-item to="/courses">Courses</b-breadcrumb-item>
+      </b-breadcrumb>
     </b-col>
   </b-row>
 

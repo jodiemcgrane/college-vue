@@ -1,10 +1,10 @@
 <!--
 @Date:   2021-03-27T11:48:41+00:00
-@Last modified time: 2021-03-27T12:28:56+00:00
+@Last modified time: 2021-04-17T20:04:48+01:00
 -->
 <template>
   <div>
-    <b-modal id="updateCourseModal" ref="updateCourseModal" centered title="Update Course" size="lg" header-bg-variant="warning" header-text-variant="light" v-bind:hide-footer="true">
+    <b-modal id="updateCourseModal" ref="updateCourseModal" centered title="Update Course" size="lg" header-bg-variant="primary" header-text-variant="light" v-bind:hide-footer="true">
 
       <b-row>
         <b-col md="6">
@@ -42,7 +42,7 @@
 
       <template>
         <div class="text-center">
-          <b-button class="submit-button mt-1 mb-1" @click="updateCourse(); hide();" pill variant="warning" text-variant="white">Submit</b-button>
+          <b-button class="submit-button mt-1 mb-1" @click="updateCourse(); hide();" pill variant="warning" text-variant="white">Update</b-button>
         </div>
       </template>
 
@@ -108,4 +108,7 @@ export default {
 </script>
 
 <style>
+.submit-button {
+  width: 15%;
+}
 </style>

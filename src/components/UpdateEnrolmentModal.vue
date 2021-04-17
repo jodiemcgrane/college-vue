@@ -1,10 +1,10 @@
 <!--
 @Date:   2021-03-27T12:38:08+00:00
-@Last modified time: 2021-03-27T13:26:07+00:00
+@Last modified time: 2021-04-17T20:33:06+01:00
 -->
 <template>
 <div>
-  <b-modal id="updateEnrolmentModal" ref="updateEnrolmentModal" centered title="Edit Enrolment" header-bg-variant="warning" header-text-variant="light" v-bind:hide-footer="true">
+  <b-modal id="updateEnrolmentModal" ref="updateEnrolmentModal" centered title="Edit Enrolment" header-bg-variant="primary" header-text-variant="light" v-bind:hide-footer="true">
 
     <b-row>
       <b-col md="12">
@@ -20,19 +20,19 @@
           <b-form-group label="Status">
             <b-row>
               <b-col md="12">
-                <b-button class="ml-2" pill variant="warning" size="sm">
+                <b-button class="ml-2" pill variant="primary" size="sm">
                   <b-form-radio v-model="updateEnrolmentData.status" value="assigned">Assigned</b-form-radio>
                 </b-button>
 
-                <b-button class="ml-2" pill variant="warning" size="sm">
+                <b-button class="ml-2" pill variant="primary" size="sm">
                   <b-form-radio v-model="updateEnrolmentData.status" value="associate">Associate</b-form-radio>
                 </b-button>
 
-                <b-button class="ml-2" pill variant="warning" size="sm">
+                <b-button class="ml-2" pill variant="primary" size="sm">
                   <b-form-radio v-model="updateEnrolmentData.status" value="career_break">Career Break</b-form-radio>
                 </b-button>
 
-                <b-button class="ml-2" pill variant="warning" size="sm">
+                <b-button class="ml-2" pill variant="primary" size="sm">
                   <b-form-radio v-model="updateEnrolmentData.status" value="interested">Interested</b-form-radio>
                 </b-button>
               </b-col>

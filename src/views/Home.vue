@@ -1,17 +1,12 @@
 <!--
 @Date:   2021-02-17T11:10:21+00:00
-@Last modified time: 2021-04-01T16:36:45+01:00
+@Last modified time: 2021-04-17T19:56:38+01:00
 -->
 <template>
 <div>
 
-  <b-row class="mb-2">
-    <b-col md="4" class="mb-3">
-      <h2>Home Page</h2>
-    </b-col>
-    <b-col md="3 ml-auto">
-
-    </b-col>
+  <b-row class="mb-2 justify-content-center">
+      <h2>College System Home</h2>
   </b-row>
 
   <b-row class="justify-content-center">

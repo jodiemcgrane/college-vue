@@ -1,11 +1,14 @@
 <!--
 @Date:   2021-02-17T11:32:26+00:00
-@Last modified time: 2021-04-01T13:25:28+01:00
+@Last modified time: 2021-04-17T19:53:46+01:00
 -->
 <template>
 <div>
 
   <b-navbar class="main-nav" type="dark" variant="primary">
+
+    <b-navbar-brand v-if="loggedIn" to="home">College System</b-navbar-brand>
+
     <b-navbar-nav class="ml-auto">
 
       <b-nav-item-dropdown v-if="loggedIn" text="User" right>
@@ -22,7 +25,7 @@
   <Sidebar v-if="loggedIn">
     <b-nav vertical class="sidebar-panel-nav mb-5">
 
-      <h3 class="mb-5" style="color: #fff">College System</h3>
+      <h3 class="ml-3 mb-5" style="color: #fff">Menu</h3>
 
       <b-nav-item to="/home" class="mt-1 mb-1"><span class="mr-3">
           <b-icon class="mr-3" icon="house" font-scale="1.2" style="color: #fff"></b-icon>

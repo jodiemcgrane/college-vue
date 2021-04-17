@@ -1,20 +1,22 @@
 <!--
 @Date:   2021-03-08T12:13:19+00:00
-@Last modified time: 2021-04-13T14:59:59+01:00
+@Last modified time: 2021-04-17T20:40:10+01:00
 -->
 <template>
 <div class="lecturers-index">
 
   <b-row class="mb-2">
     <b-col md="4" class="mb-3">
-      <h2>Lecturers</h2>
+      <h2>Lecturers Page<span>
+          <b-icon class="ml-2" icon="eyeglasses" font-scale="1.2"></b-icon>
+        </span></h2>
     </b-col>
-    <!-- <b-col md="3 ml-auto">
+    <b-col md="3 ml-auto">
       <b-breadcrumb>
         <b-breadcrumb-item to="/home">Home</b-breadcrumb-item>
         <b-breadcrumb-item to="/lecturers">Lecturers</b-breadcrumb-item>
       </b-breadcrumb>
-    </b-col> -->
+    </b-col>
   </b-row>
 
   <b-card class="lecturers-card">
@@ -81,7 +83,7 @@
       <b-col md="6" class="my-1 ml-auto">
         <div class="d-flex">
           <b-col md="10">
-            <p class="mt-2 right">Courses / page: </p>
+            <p class="mt-2 right">Lecturers / page: </p>
           </b-col>
           <b-form-select :options="pageOptions" v-model="perPage" />
         </div>
@@ -110,12 +112,11 @@ export default {
         'name',
         'address',
         'email',
-        'phone',
         'actions',
       ],
       currentPage: 1,
       perPage: 5,
-      pageOptions: [10, 20, 30],
+      pageOptions: [5, 10, 15, 20],
       lecturers: [],
       term: "",
       filteredLecturers: [],
