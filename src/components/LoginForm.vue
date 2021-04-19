@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-19T14:03:38+00:00
-@Last modified time: 2021-04-10T15:59:28+01:00
+@Last modified time: 2021-04-19T12:55:15+01:00
 -->
 <template>
 <b-row>
@@ -19,12 +19,17 @@
         </div>
 
         <b-form @submit.prevent="login()">
-          <b-form-group label="Email Address">
+
+          <b-form-group label="Email Address" :class="{ 'form-group--error': $v.form.email.$error }">
             <b-form-input type="email" v-model="form.email" placeholder="example@email.com" />
+            <span v-if="(!$v.form.email.required || !$v.form.email.email) && $v.form.email.$dirty" class="text-danger">Valid Email is required!</span>
           </b-form-group>
 
           <b-form-group class="mb-4" label="Password">
             <b-form-input type="password" v-model="form.password" />
+            <span v-if="!$v.form.password.required && $v.form.password.$dirty" class="text-danger">Password is required!</span>
+            <span v-if="(!$v.form.password.minLength || !$v.form.password.maxLength) && $v.form.password.$dirty" class="text-danger">Password must be between {{ $v.form.password.$params.minLength.min}} and {{ $v.form.password.$params.maxLength.max}}
+              characters!</span>
           </b-form-group>
 
           <div class="d-flex mb-5 align-items-center">
@@ -34,7 +39,7 @@
             </span>
           </div>
 
-          <b-button class="login-button" @click="login()" pill variant="primary">Login</b-button>
+          <b-button @click="login()" class="login-button" type="submit" pill variant="primary">Login</b-button>
 
           <div class="justify-content-center mt-5">
             <p>Not a member? <strong>
@@ -51,14 +56,18 @@
 
 <script>
 import axios from '@/config/api';
-// import {
-//   required,
-//   minLength,
-//   maxLength,
-//   email,
-// } from 'vuelidate/lib/validators'
+import {
+  validationMixin
+} from "vuelidate";
+import {
+  required,
+  email,
+  minLength,
+  maxLength
+} from "vuelidate/lib/validators";
 
 export default {
+  mixins: [validationMixin],
   name: 'LoginForm',
   components: {
 
@@ -67,28 +76,46 @@ export default {
     return {
       form: {
         email: "",
-        password: ""
+        password: "",
+        submitStatus: null
+      }
+    }
+  },
+  validations: {
+    form: {
+      email: {
+        required,
+        email
+      },
+      password: {
+        required,
+        minLength: minLength(6),
+        maxLength: maxLength(12)
       }
     }
   },
   methods: {
     login() {
-      axios.post('/login', {
-          email: this.form.email,
-          password: this.form.password
-        })
-        .then(response => {
-          console.log(response.data);
-          localStorage.setItem('token', response.data.token);
-          this.$emit('login');
-          this.$router.push({
-            name: 'home'
-          });
-        })
-        .catch(error => {
-          console.log(error)
-          console.log(error.response.data)
-        })
+      this.$v.$touch();
+
+      if (!this.$v.$invalid) {
+        axios.post('/login', {
+            email: this.form.email,
+            password: this.form.password
+          })
+          .then(response => {
+            console.log(response.data);
+            localStorage.setItem('token', response.data.token);
+            this.$emit('login');
+            this.$router.push({
+              name: 'home'
+            });
+          })
+          .catch(error => {
+            console.log(error)
+            console.log(error.response.data)
+          })
+      }
     }
   },
 }

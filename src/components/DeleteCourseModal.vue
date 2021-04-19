@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-19T13:48:26+00:00
-@Last modified time: 2021-04-13T14:58:50+01:00
+@Last modified time: 2021-04-18T21:02:05+01:00
 -->
 <template>
 <div class="delete-course-modal">
@@ -70,7 +70,8 @@ export default {
           console.log(error)
           console.log(error.response.data)
         })
-    }
+    },
+
   },
 }
 </script>
