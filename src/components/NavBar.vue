@@ -1,13 +1,13 @@
 <!--
 @Date:   2021-02-17T11:32:26+00:00
-@Last modified time: 2021-04-17T20:48:57+01:00
+@Last modified time: 2021-04-19T16:37:38+01:00
 -->
 <template>
 <div>
 
   <b-navbar class="main-nav" type="dark" variant="primary">
 
-    <b-navbar-brand v-if="loggedIn" to="home">College System</b-navbar-brand>
+    <b-navbar-brand v-if="loggedIn" to="/home">College System</b-navbar-brand>
 
     <b-navbar-nav class="ml-auto">
 
