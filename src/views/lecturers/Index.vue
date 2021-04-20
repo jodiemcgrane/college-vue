@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-08T12:13:19+00:00
-@Last modified time: 2021-04-20T23:59:16+01:00
+@Last modified time: 2021-04-21T00:13:08+01:00
 -->
 <template>
 <div class="lecturers-index">
@@ -185,5 +185,4 @@ export default {
   transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
   padding: 14px 36px 18px 36px;
 }
-
 </style>

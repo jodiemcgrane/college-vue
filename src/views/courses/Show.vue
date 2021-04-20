@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-04-20T23:19:40+01:00
+@Last modified time: 2021-04-21T00:08:02+01:00
 -->
 <template>
 <div class="courses-show">
@@ -255,13 +255,4 @@ export default {
   transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
   padding: 14px 36px 18px 36px;
 }
-
-.white-link {
-
-}
-
-/* a.router-link-active, a.router-link-active:hover {
-  color: #fff;
-  text-decoration: none;
-} */
 </style>

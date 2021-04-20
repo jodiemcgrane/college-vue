@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-19T14:03:38+00:00
-@Last modified time: 2021-04-20T16:57:39+01:00
+@Last modified time: 2021-04-21T00:33:41+01:00
 -->
 <template>
 <b-row>
@@ -15,7 +15,7 @@
 
         <div class="mb-4">
           <h3>Sign-in to <b>College</b></h3>
-          <p class="mb-4">Please enter the correct credentials to sign-in to the college system.</p>
+          <p class="mb-4" style="color: #b3b3b3; font-weight: 300;">Please enter the correct credentials to sign-in to the college system.</p>
         </div>
 
         <b-form @submit.prevent="login()">
@@ -39,7 +39,7 @@
             </span>
           </div>
 
-          <b-button @click="login()" v-on:keyup.enter="login()" class="login-button" type="submit" pill variant="primary">Login</b-button>
+          <b-button @click="login()" v-on:keyup.enter="login()" class="login-button heavy" type="submit" pill variant="primary">LOGIN</b-button>
 
           <div class="justify-content-center mt-5">
             <p>Not a member? <strong>
@@ -121,11 +121,6 @@ export default {
 </script>
 
 <style scoped>
-p {
-  color: #b3b3b3;
-  font-weight: 300;
-}
-
 .contents {
   width: 50%;
 }
@@ -148,5 +143,11 @@ img {
 .login-button {
   height: 54px;
   width: 100%;
+}
+
+.heavy {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 </style>

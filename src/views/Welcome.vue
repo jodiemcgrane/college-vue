@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-23T09:26:27+00:00
-@Last modified time: 2021-04-13T10:17:43+01:00
+@Last modified time: 2021-04-21T00:13:11+01:00
 -->
 <template>
 <div>
@@ -20,7 +20,7 @@ export default {
     LoginForm,
   },
   methods: {
-    setLoggedIn(){
+    setLoggedIn() {
       this.$emit('login');
     }
   }

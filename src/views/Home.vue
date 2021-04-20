@@ -1,19 +1,19 @@
 <!--
 @Date:   2021-02-17T11:10:21+00:00
-@Last modified time: 2021-04-20T14:51:12+01:00
+@Last modified time: 2021-04-21T00:13:10+01:00
 -->
 <template>
 <div>
 
   <b-row class="mb-2">
-      <h2 class="ml-4">College System Home</h2>
+    <h2 class="ml-4">College System Home</h2>
 
-      <b-col md="2 ml-auto">
-        <b-breadcrumb>
-          <b-breadcrumb-item to="/home">Home</b-breadcrumb-item>
-          <b-breadcrumb-item to="/home"></b-breadcrumb-item>
-        </b-breadcrumb>
-      </b-col>
+    <b-col md="2 ml-auto">
+      <b-breadcrumb>
+        <b-breadcrumb-item to="/home">Home</b-breadcrumb-item>
+        <b-breadcrumb-item to="/home"></b-breadcrumb-item>
+      </b-breadcrumb>
+    </b-col>
   </b-row>
 
   <b-row class="justify-content-center">
@@ -86,7 +86,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'Home',
   components: {

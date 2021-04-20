@@ -1,53 +1,53 @@
 <!--
 @Date:   2021-03-27T11:48:41+00:00
-@Last modified time: 2021-04-20T22:50:00+01:00
+@Last modified time: 2021-04-21T00:09:06+01:00
 -->
 <template>
-  <div>
-    <b-modal id="updateCourseModal" ref="updateCourseModal" centered title="Update Course" size="lg" header-bg-variant="primary" header-text-variant="light" v-bind:hide-footer="true">
+<div>
+  <b-modal id="updateCourseModal" ref="updateCourseModal" centered title="Update Course" size="lg" header-bg-variant="primary" header-text-variant="light" v-bind:hide-footer="true">
 
-      <b-row>
-        <b-col md="6">
-          <b-form>
+    <b-row>
+      <b-col md="6">
+        <b-form>
 
-            <b-form-group label="Title">
-              <b-form-input type="text" v-model="updateCourseData.title" />
+          <b-form-group label="Title">
+            <b-form-input type="text" v-model="updateCourseData.title" />
+          </b-form-group>
+
+          <b-form-group label="Code">
+            <b-form-input type="text" v-model="updateCourseData.code" />
+          </b-form-group>
+
+          <b-form-group label="Points">
+            <b-form-input type="text" v-model="updateCourseData.points" />
+          </b-form-group>
+
+          <b-form-group label="Level">
+            <b-form-input type="text" v-model="updateCourseData.level" />
+          </b-form-group>
+        </b-form>
+      </b-col>
+
+      <b-col md="6">
+        <b-row>
+          <b-col md="8">
+            <b-form-group label="Description">
+              <b-form-textarea class="description-box" type="text" rows="5" placeholder="Enter course description..." v-model="updateCourseData.description" />
             </b-form-group>
+          </b-col>
+        </b-row>
+      </b-col>
 
-            <b-form-group label="Code">
-              <b-form-input type="text" v-model="updateCourseData.code" />
-            </b-form-group>
+    </b-row>
 
-            <b-form-group label="Points">
-              <b-form-input type="text" v-model="updateCourseData.points" />
-            </b-form-group>
+    <template>
+      <div class="text-center">
+        <b-button class="submit-button mt-1 mb-1" @click="updateCourse(); hide();" pill variant="warning" text-variant="white">Update</b-button>
+      </div>
+    </template>
 
-            <b-form-group label="Level">
-              <b-form-input type="text" v-model="updateCourseData.level" />
-            </b-form-group>
-          </b-form>
-        </b-col>
-
-        <b-col md="6">
-          <b-row>
-            <b-col md="8">
-              <b-form-group label="Description">
-                <b-form-textarea class="description-box" type="text" rows="5" placeholder="Enter course description..." v-model="updateCourseData.description" />
-              </b-form-group>
-            </b-col>
-          </b-row>
-        </b-col>
-
-      </b-row>
-
-      <template>
-        <div class="text-center">
-          <b-button class="submit-button mt-1 mb-1" @click="updateCourse(); hide();" pill variant="warning" text-variant="white">Update</b-button>
-        </div>
-      </template>
-
-    </b-modal>
-  </div>
+  </b-modal>
+</div>
 </template>
 
 <script>
@@ -60,7 +60,7 @@ export default {
       type: Object
     }
   },
-  data () {
+  data() {
     return {
 
     }

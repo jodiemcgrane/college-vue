@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-24T16:50:35+00:00
-@Last modified time: 2021-04-20T22:58:31+01:00
+@Last modified time: 2021-04-21T00:08:49+01:00
 -->
 <template>
 <div class="delete-enrolment-modal">
@@ -21,8 +21,8 @@
     </b-row>
 
     <b-row class="justify-content-center">
-        <b-button class="delete-modal-button" @click="hide();" variant="light">Cancel</b-button>
-        <b-button class="cancel-modal-button" @click="deleteEnrolment();" variant="danger">Delete</b-button>
+      <b-button class="delete-modal-button" @click="hide();" variant="light">Cancel</b-button>
+      <b-button class="cancel-modal-button" @click="deleteEnrolment();" variant="danger">Delete</b-button>
     </b-row>
 
   </b-modal>
