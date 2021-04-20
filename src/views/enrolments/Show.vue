@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-06T13:26:11+00:00
-@Last modified time: 2021-04-16T17:37:36+01:00
+@Last modified time: 2021-04-20T10:32:24+01:00
 -->
 <template>
 <div class="enrolments-show">
@@ -299,7 +299,7 @@ export default {
 } */
 
 .border-bottom-black {
-  width: 300px;
+  width: 280px;
   position: relative;
   border-bottom: 1px solid #282828;
 }

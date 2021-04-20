@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-08T12:13:24+00:00
-@Last modified time: 2021-04-13T15:02:00+01:00
+@Last modified time: 2021-04-20T10:32:35+01:00
 -->
 <template>
 <div class="lecturers-show">
@@ -254,7 +254,7 @@ export default {
 }
 
 .border-bottom {
-  width: 600px;
+  width: 580px;
   position: relative;
   border-bottom: 1px solid #fff;
 }

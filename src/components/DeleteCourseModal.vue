@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-19T13:48:26+00:00
-@Last modified time: 2021-04-18T21:02:05+01:00
+@Last modified time: 2021-04-20T09:33:58+01:00
 -->
 <template>
 <div class="delete-course-modal">
@@ -20,8 +20,8 @@
     </b-row>
 
     <b-row class="justify-content-center">
-        <b-button class="delete-modal-button" @click="hide();" variant="light">Cancel</b-button>
-        <b-button class="cancel-modal-button" @click="deleteCourse(); hide();" variant="danger">Delete</b-button>
+      <b-button class="delete-modal-button" @click="hide();" variant="light">Cancel</b-button>
+      <b-button class="cancel-modal-button" @click="deleteCourse(); hide();" variant="danger">Delete</b-button>
     </b-row>
 
   </b-modal>
