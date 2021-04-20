@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-16T19:54:35+00:00
-@Last modified time: 2021-04-20T22:38:09+01:00
+@Last modified time: 2021-04-20T23:16:33+01:00
 -->
 <template>
 <div>
@@ -83,7 +83,7 @@ export default {
         .then(response => {
           console.log(response.data);
           this.$refs.createLecturerModal.hide();
-          this.$emit("get-courses");
+          this.$emit("get-lecturers");
         })
         .catch(error => {
           console.log(error)

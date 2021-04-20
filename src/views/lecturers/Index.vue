@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-08T12:13:19+00:00
-@Last modified time: 2021-04-20T22:47:47+01:00
+@Last modified time: 2021-04-20T23:59:16+01:00
 -->
 <template>
 <div class="lecturers-index">
@@ -23,7 +23,7 @@
 
     <CreateLecturerModal v-on:get-lecturers="getLecturers" ref="CreateLecturerModal" />
 
-    <DeleteLecturerModal v-on:get-lecturers="getLecturers" ref="DeleteLecturerModal" :lecturerId="selectedLecturer" />
+    <DeleteLecturerModal v-on:get-lecturers="getLecturers" ref="DeleteLecturerModal" :lecturerId="selectedLecturer" :deleteLecturerData="lecturer" />
 
     <b-row class="mb-4">
       <b-col md="6" class="my-1">
@@ -66,7 +66,7 @@
           </router-link>
 
           <b-button variant="danger" size="sm">
-            <b-icon @click="showDeleteModal(data.item.id)" icon="trash" font-scale="1.3" style="color: #fff"></b-icon>
+            <b-icon @click="showDeleteModal(data.item.id, data.item)" icon="trash" font-scale="1.3" style="color: #fff"></b-icon>
           </b-button>
 
         </template>
@@ -121,6 +121,7 @@ export default {
       term: "",
       filteredLecturers: [],
       selectedLecturer: 0,
+      lecturer: {},
       isBusy: false,
     }
   },
@@ -136,8 +137,9 @@ export default {
     showCreateModal() {
       this.$refs.CreateLecturerModal.show();
     },
-    showDeleteModal(lecturerId) {
+    showDeleteModal(lecturerId, deleteLecturerData) {
       this.selectedLecturer = lecturerId;
+      this.lecturer = deleteLecturerData;
       this.$refs.DeleteLecturerModal.show();
     },
     searchLecturer() {

@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-23T10:18:03+00:00
-@Last modified time: 2021-04-20T22:58:45+01:00
+@Last modified time: 2021-04-21T00:02:10+01:00
 -->
 <template>
 <div class="delete-lecturer-modal">
@@ -35,6 +35,7 @@ export default {
   name: 'DeleteLecturerModal',
   props: {
     lecturerId: Number,
+    deleteLecturerData: Object
   },
   data() {
     return {
@@ -55,26 +56,33 @@ export default {
       this.$emit("get-lecturers");
     },
     deleteLecturer() {
-      //console.log(this.lecturerId);
       let token = localStorage.getItem('token');
-
-      axios.delete(`/lecturers/${this.lecturerId}`, {
-          headers: {
-            Authorization: "Bearer " + token
-          }
-        })
-        .then(response => {
-          console.log(response.data);
-          this.$router.replace({
-            name: 'lecturers_index'
-          });
-          this.$refs.deleteLecturerModal.hide();
-          this.$emit("get-courses");
-        })
-        .catch(error => {
-          console.log(error)
-          console.log(error.response.data)
-        })
+      let listOfDeleteRequests = this.deleteLecturerData.enrolments.map((current) => axios.delete(`/enrolments/${current.id}`, {
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      }));
+      // log the contents of listOfDeleteRequests
+      Promise.all(listOfDeleteRequests)
+        .then((response) => { //<--this line changed
+          axios.delete("/lecturers/" + this.lecturerId, {
+              headers: {
+                Authorization: "Bearer " + token
+              }
+            })
+            .then((response) => { //<--this line changed
+              console.log(response.data);
+              this.$router.replace({
+                name: 'lecturers_index'
+              });
+              this.$refs.deleteLecturerModal.hide();
+              this.$emit("get-lecturers");
+            })
+            .catch((error) => { //<--this line changed
+              console.log(error);
+              console.log(response.data);
+            });
+        });
     }
   },
 }

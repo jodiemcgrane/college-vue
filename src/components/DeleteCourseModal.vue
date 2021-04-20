@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-19T13:48:26+00:00
-@Last modified time: 2021-04-20T22:58:15+01:00
+@Last modified time: 2021-04-20T23:43:34+01:00
 -->
 <template>
 <div class="delete-course-modal">
@@ -35,6 +35,7 @@ export default {
   name: 'DeleteCourseModal',
   props: {
     courseId: Number,
+    deleteCourseData: Object
   },
   data() {
     return {
@@ -56,27 +57,33 @@ export default {
     },
     deleteCourse() {
       let token = localStorage.getItem('token');
-
-      //console.log(this.courseId);
-      axios.delete(`/courses/${this.courseId}`, {
-          headers: {
-            Authorization: "Bearer " + token
-          }
-        })
-        .then(response => {
-          console.log(response.data);
-          this.$router.replace({
-            name: 'courses_index'
-          });
-          this.$refs.deleteCourseModal.hide();
-          this.$emit("get-courses");
-        })
-        .catch(error => {
-          console.log(error)
-          console.log(error.response.data)
-        })
-    },
-
+      let listOfDeleteRequests = this.deleteCourseData.enrolments.map((current) => axios.delete(`/enrolments/${current.id}`, {
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      }));
+      // log the contents of listOfDeleteRequests
+      Promise.all(listOfDeleteRequests)
+        .then((response) => { //<--this line changed
+          axios.delete("/courses/" + this.courseId, {
+              headers: {
+                Authorization: "Bearer " + token
+              }
+            })
+            .then((response) => { //<--this line changed
+              console.log(response.data);
+              this.$router.replace({
+                name: 'courses_index'
+              });
+              this.$refs.deleteCourseModal.hide();
+              this.$emit("get-courses");
+            })
+            .catch((error) => { //<--this line changed
+              console.log(error);
+              console.log(response.data);
+            });
+        });
+    }
   },
 }
 </script>

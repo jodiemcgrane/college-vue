@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-04-20T22:56:25+01:00
+@Last modified time: 2021-04-20T23:19:40+01:00
 -->
 <template>
 <div class="courses-show">
@@ -67,7 +67,7 @@
 
   <UpdateCourseModal ref="UpdateCourseModal" :updateCourseData="course" />
 
-  <DeleteCourseModal ref="DeleteCourseModal" :courseId="selectedCourse" />
+  <DeleteCourseModal ref="DeleteCourseModal" :courseId="selectedCourse" :deleteCourseData="course" />
 
   <b-row class="justify-content-center">
     <b-col md="10">

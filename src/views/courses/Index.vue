@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-04-20T22:47:25+01:00
+@Last modified time: 2021-04-20T23:45:38+01:00
 -->
 <template>
 <div class="courses-index">
@@ -23,7 +23,7 @@
 
     <CreateCourseModal v-on:get-courses="getCourses" ref="CreateCourseModal" />
 
-    <DeleteCourseModal v-on:get-courses="getCourses" ref="DeleteCourseModal" :courseId="selectedCourse" />
+    <DeleteCourseModal v-on:get-courses="getCourses" ref="DeleteCourseModal" :courseId="selectedCourse" :deleteCourseData="course" />
 
     <b-row class="mb-4">
       <b-col md="6" class="my-1">
@@ -64,7 +64,7 @@
         </router-link>
 
         <b-button variant="danger" size="sm">
-          <b-icon @click="showDeleteModal(data.item.id)" icon="trash" font-scale="1.3" style="color: #fff"></b-icon>
+          <b-icon @click="showDeleteModal(data.item.id, data.item)" icon="trash" font-scale="1.3" style="color: #fff"></b-icon>
         </b-button>
 
       </template>
@@ -117,6 +117,7 @@ export default {
       term: "",
       filteredCourses: [],
       selectedCourse: 0,
+      course: {},
       isBusy: false,
     }
   },
@@ -132,8 +133,9 @@ export default {
     showCreateModal() {
       this.$refs.CreateCourseModal.show();
     },
-    showDeleteModal(courseId) {
+    showDeleteModal(courseId, deleteCourseData) {
       this.selectedCourse = courseId;
+      this.course = deleteCourseData;
       this.$refs.DeleteCourseModal.show();
     },
     searchCourse() {

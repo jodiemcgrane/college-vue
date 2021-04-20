@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-16T19:00:03+00:00
-@Last modified time: 2021-04-20T22:38:28+01:00
+@Last modified time: 2021-04-20T23:16:44+01:00
 -->
 <template>
 <div>
@@ -20,21 +20,21 @@
           <b-form-group label="Status">
             <b-row>
               <b-col md="12">
-                  <b-button class="ml-2" pill variant="primary" size="sm">
-                    <b-form-radio v-model="form.status" value="assigned">Assigned</b-form-radio>
-                  </b-button>
+                <b-button class="ml-2" pill variant="primary" size="sm">
+                  <b-form-radio v-model="form.status" value="assigned">Assigned</b-form-radio>
+                </b-button>
 
-                  <b-button class="ml-2" pill variant="primary" size="sm">
-                    <b-form-radio v-model="form.status" value="associate">Associate</b-form-radio>
-                  </b-button>
+                <b-button class="ml-2" pill variant="primary" size="sm">
+                  <b-form-radio v-model="form.status" value="associate">Associate</b-form-radio>
+                </b-button>
 
-                  <b-button class="ml-2" pill variant="primary" size="sm">
-                    <b-form-radio v-model="form.status" value="career_break">Career Break</b-form-radio>
-                  </b-button>
+                <b-button class="ml-2" pill variant="primary" size="sm">
+                  <b-form-radio v-model="form.status" value="career_break">Career Break</b-form-radio>
+                </b-button>
 
-                  <b-button class="ml-2" pill variant="primary" size="sm">
-                    <b-form-radio v-model="form.status" value="interested">Interested</b-form-radio>
-                  </b-button>
+                <b-button class="ml-2" pill variant="primary" size="sm">
+                  <b-form-radio v-model="form.status" value="interested">Interested</b-form-radio>
+                </b-button>
               </b-col>
             </b-row>
           </b-form-group>
