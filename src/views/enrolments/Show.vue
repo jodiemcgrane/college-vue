@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-06T13:26:11+00:00
-@Last modified time: 2021-04-20T10:32:24+01:00
+@Last modified time: 2021-04-20T14:41:13+01:00
 -->
 <template>
 <div class="enrolments-show">
@@ -13,7 +13,8 @@
           <b-card-text>
             <b-card-text>
               <h2>Enrolment ID: {{ enrolment.id }}</h2>
-              <div class="border-bottom"></div>
+              <hr style="background-color: #fff; text-align: left; margin-left: 0">
+
             </b-card-text>
 
             <b-card-text>
@@ -50,7 +51,7 @@
                 <b-row>
                   <b-col md="6">
                     <div class="d-flex">
-                      <router-link to="/enrolments">
+                      <router-link to="/enrolments" style="color: #fff; text-decoration: none">
                         <div v-b-hover="handleHover">
                           <b-icon v-if="isHovered" class="mr-2" icon="arrow-left-circle-fill" font-scale="1.6" style="color: #fff"></b-icon>
                           <b-icon v-else class="mr-2" icon="arrow-left-circle" font-scale="1.6" style="color: #fff"></b-icon>
@@ -92,7 +93,8 @@
           <b-col class="right">
             <p class="mt-2">ID: {{ enrolment.course.id }}</p>
           </b-col>
-          <div class="border-bottom-black"></div>
+          <hr style="background-color: #212529; text-align: left; margin-left: 0">
+
         </b-row>
 
         <b-card-text>
@@ -144,7 +146,8 @@
           <b-col class="right">
             <p class="mt-2">ID: {{ enrolment.lecturer.id }}</p>
           </b-col>
-          <div class="border-bottom-black"></div>
+          <hr style="background-color: #212529; text-align: left; margin-left: 0">
+
         </b-row>
 
         <b-card-text>
@@ -290,18 +293,6 @@ export default {
   transform: scale(1.10);
   box-shadow: 0 10px 20px rgba(0, 0, 0, .10), 0 4px 8px rgba(0, 0, 0, .06);
   border-color: #0275d8;
-}
-
-/* .border-bottom {
-  width: 420px;
-  position: relative;
-  border-bottom: 1px solid #fff;
-} */
-
-.border-bottom-black {
-  width: 280px;
-  position: relative;
-  border-bottom: 1px solid #282828;
 }
 
 .card {

@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-08T12:13:24+00:00
-@Last modified time: 2021-04-20T10:32:35+01:00
+@Last modified time: 2021-04-20T14:35:39+01:00
 -->
 <template>
 <div class="lecturers-show">
@@ -10,12 +10,12 @@
 
         <div>
           <b-card-text>
-            <h2>Lecturer ID: {{ lecturer.id }}</h2>
-            <div class="border-bottom"></div>
+            <h2>{{ lecturer.name }}</h2>
+            <hr style="background-color: #fff; text-align: left; margin-left: 0">
 
             <b-card-text>
               <div class="mt-4">
-                <h5>{{ lecturer.name }}</h5>
+                <h5>ID: {{ lecturer.id }}</h5>
               </div>
 
               <div class="my-4">
@@ -35,7 +35,7 @@
                 <b-row>
                   <b-col md="6">
                     <div class="d-flex">
-                      <router-link to="/lecturers">
+                      <router-link to="/lecturers" style="color: #fff; text-decoration: none">
                         <div v-b-hover="handleHover">
                           <b-icon v-if="isHovered" class="mr-2" icon="arrow-left-circle-fill" font-scale="1.6" style="color: #fff"></b-icon>
                           <b-icon v-else class="mr-2" icon="arrow-left-circle" font-scale="1.6" style="color: #fff"></b-icon>
@@ -251,12 +251,6 @@ export default {
   transform: scale(1.10);
   box-shadow: 0 10px 20px rgba(0, 0, 0, .10), 0 4px 8px rgba(0, 0, 0, .06);
   border-color: #0275d8;
-}
-
-.border-bottom {
-  width: 580px;
-  position: relative;
-  border-bottom: 1px solid #fff;
 }
 
 .lecturers-show-card {

@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-19T14:03:38+00:00
-@Last modified time: 2021-04-19T12:55:15+01:00
+@Last modified time: 2021-04-20T13:21:06+01:00
 -->
 <template>
 <b-row>
@@ -39,7 +39,7 @@
             </span>
           </div>
 
-          <b-button @click="login()" class="login-button" type="submit" pill variant="primary">Login</b-button>
+          <b-button @click="login()" v-on:keyup.enter="login()" class="login-button" type="submit" pill variant="primary">Login</b-button>
 
           <div class="justify-content-center mt-5">
             <p>Not a member? <strong>

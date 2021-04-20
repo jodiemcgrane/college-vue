@@ -1,13 +1,13 @@
 <!--
 @Date:   2021-03-20T14:26:09+00:00
-@Last modified time: 2021-04-10T15:26:34+01:00
+@Last modified time: 2021-04-20T14:47:07+01:00
 -->
 <template lang="html">
   <div class="enrolments-edit">
 
     <b-row class="justify-content-center">
-      <b-col md="12">
-      <router-link to="/enrolments">
+      <b-col md="4">
+      <router-link to="/enrolments" style="color: #212529; text-decoration: none">
         <div v-b-hover="handleHover">
           <div class="d-flex">
             <b-icon v-if="isHovered" class="mr-2" icon="arrow-left-circle-fill" font-scale="1.6" style="color: #383f45"></b-icon>
@@ -21,6 +21,14 @@
         </div>
       </router-link>
     </b-col>
+
+    <b-col md="3 ml-auto">
+      <b-breadcrumb>
+        <b-breadcrumb-item to="/home" class="ml-2">Home</b-breadcrumb-item>
+        <b-breadcrumb-item to="/enrolments">Enrolments</b-breadcrumb-item>
+        <b-breadcrumb-item :to = "{ name: 'enrolments_edit', params: {enrolment_id: this.$route.params.id}} ">Edit</b-breadcrumb-item>
+      </b-breadcrumb>
+    </b-col>
     </b-row>
 
     <b-row class="mt-5 justify-content-center">
@@ -29,10 +37,10 @@
         <b-overlay :show="show" rounded="sm" spinner-variant="primary">
         <b-card class="edit-enrolments-card">
 
-          <b-row class="mb-5">
-            <b-col md="8" class="my-1">
+          <b-row class="mb-4">
+            <b-col md="12" class="my-1">
                 <h3>Edit Enrolment: ID {{ this.$route.params.id }}</h3>
-                <div class="border-bottom-black"></div>
+                <hr style="background-color: #212529; text-align: left; margin-left: 0">
             </b-col>
           </b-row>
 
@@ -46,21 +54,21 @@
             </b-form-select>
           </b-form-group>
 
-          <b-form-group label="Lecturer Name">
+          <b-form-group label="Lecturer Name" class="mt-1">
             <b-form-select v-model="form.lecturer_id">
               <option v-for="lecturer in lecturers" :value="lecturer.id" :key="lecturer.id">{{ lecturer.name }}</option>
             </b-form-select>
           </b-form-group>
 
-          <b-form-group label="Date">
+          <b-form-group label="Date" class="mt-1">
             <input class="form-control" type="date" v-model="form.date">
           </b-form-group>
 
-          <b-form-group label="Time">
+          <b-form-group label="Time" class="mt-1">
             <input class="form-control" type="time" v-model="form.time">
           </b-form-group>
 
-          <b-form-group label="Status">
+          <b-form-group label="Status" class="mt-1">
             <b-row class="heavy justify-content-center">
             <b-form-radio class="mr-4" v-model="form.status" value="assigned">Assigned</b-form-radio>
             <b-form-radio class="mr-4" v-model="form.status" value="associate">Associate</b-form-radio>

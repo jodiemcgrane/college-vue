@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-04-20T10:32:07+01:00
+@Last modified time: 2021-04-20T14:33:34+01:00
 -->
 <template>
 <div class="courses-show">
@@ -12,8 +12,8 @@
         <div>
           <b-card-text>
             <h2>{{ course.title }}</h2>
-            <div class="border-bottom"></div>
-
+            <hr style="background-color: #fff; text-align: left; margin-left: 0">
+            
             <div class="d-flex mt-5 mb-4 align-items-center">
               <h5>Level: {{ course.level }}</h5>
               <span class="ml-auto">
@@ -35,8 +35,8 @@
               <div>
                 <b-row>
                   <b-col md="6" class="my-1">
-                    <div class="d-flex">
-                      <router-link to="/courses">
+                    <div class="white-link d-flex">
+                      <router-link to="/courses" style="color: #fff; text-decoration: none">
                         <div v-b-hover="handleHover">
                           <b-icon v-if="isHovered" class="mr-2" icon="arrow-left-circle-fill" font-scale="1.6" style="color: #fff"></b-icon>
                           <b-icon v-else class="mr-2" icon="arrow-left-circle" font-scale="1.6" style="color: #fff"></b-icon>
@@ -248,12 +248,6 @@ export default {
   border-color: #0275d8;
 }
 
-.border-bottom {
-  width: 750px;
-  position: relative;
-  border-bottom: 1px solid #fff;
-}
-
 .courses-show-card {
   border-radius: 4px;
   background: #fff;
@@ -262,8 +256,12 @@ export default {
   padding: 14px 36px 18px 36px;
 }
 
-a.router-link-active, a.router-link-active:hover {
+.white-link {
+
+}
+
+/* a.router-link-active, a.router-link-active:hover {
   color: #fff;
   text-decoration: none;
-}
+} */
 </style>
