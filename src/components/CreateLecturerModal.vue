@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-16T19:54:35+00:00
-@Last modified time: 2021-03-24T16:44:28+00:00
+@Last modified time: 2021-04-20T22:38:09+01:00
 -->
 <template>
 <div>
@@ -65,6 +65,9 @@ export default {
     hide() {
       this.$refs.createLecturerModal.hide();
     },
+    getLecturers() {
+      this.$emit("get-lecturers");
+    },
     createLecturer() {
       let token = localStorage.getItem('token');
       axios.post('/lecturers', {
@@ -79,6 +82,8 @@ export default {
         })
         .then(response => {
           console.log(response.data);
+          this.$refs.createLecturerModal.hide();
+          this.$emit("get-courses");
         })
         .catch(error => {
           console.log(error)

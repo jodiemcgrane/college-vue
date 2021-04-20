@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-08T12:13:19+00:00
-@Last modified time: 2021-04-17T20:40:10+01:00
+@Last modified time: 2021-04-20T22:47:47+01:00
 -->
 <template>
 <div class="lecturers-index">
@@ -21,9 +21,9 @@
 
   <b-card class="lecturers-card">
 
-    <CreateLecturerModal ref="CreateLecturerModal" />
+    <CreateLecturerModal v-on:get-lecturers="getLecturers" ref="CreateLecturerModal" />
 
-    <DeleteLecturerModal ref="DeleteLecturerModal" :lecturerId="selectedLecturer" />
+    <DeleteLecturerModal v-on:get-lecturers="getLecturers" ref="DeleteLecturerModal" :lecturerId="selectedLecturer" />
 
     <b-row class="mb-4">
       <b-col md="6" class="my-1">

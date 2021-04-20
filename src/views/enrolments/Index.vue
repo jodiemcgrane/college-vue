@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-26T19:48:08+00:00
-@Last modified time: 2021-04-17T20:03:24+01:00
+@Last modified time: 2021-04-20T22:47:38+01:00
 -->
 <template>
 <div class="enrolments-index">
@@ -21,7 +21,7 @@
 
   <b-card class="enrolments-card">
 
-    <CreateEnrolmentModal ref="CreateEnrolmentModal" />
+    <CreateEnrolmentModal v-on:get-enrolments="getEnrolments" ref="CreateEnrolmentModal" />
 
     <b-row>
       <b-col class="my-1 right">
@@ -61,7 +61,7 @@
       </template>
     </b-table>
 
-    <DeleteEnrolmentModal ref="DeleteEnrolmentModal" :enrolmentId="selectedEnrolment" />
+    <DeleteEnrolmentModal v-on:get-enrolments="getEnrolments" ref="DeleteEnrolmentModal" :enrolmentId="selectedEnrolment" />
 
     <b-row class="mt-4">
       <b-col md="6" class="my-1">

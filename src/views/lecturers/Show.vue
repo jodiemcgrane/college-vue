@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-08T12:13:24+00:00
-@Last modified time: 2021-04-20T14:35:39+01:00
+@Last modified time: 2021-04-20T22:57:01+01:00
 -->
 <template>
 <div class="lecturers-show">
@@ -76,7 +76,7 @@
     <b-col md="10">
       <b-card class="lecturers-show-card mt-5">
 
-        <CreateEnrolmentModal ref="CreateEnrolmentModal" />
+        <CreateEnrolmentModal v-on:get-enrolments="getEnrolments" ref="CreateEnrolmentModal" />
 
         <b-row>
           <b-col md="6" class="my-1">

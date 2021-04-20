@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-27T11:48:41+00:00
-@Last modified time: 2021-04-17T20:04:48+01:00
+@Last modified time: 2021-04-20T22:50:00+01:00
 -->
 <template>
   <div>
@@ -91,9 +91,9 @@ export default {
         })
         .then(response => {
           console.log(response.data);
-          this.$router.push({
-            name: 'courses_index'
-          });
+          // this.$router.push({
+          //   name: 'courses_index'
+          // });
         })
         .catch(error => {
           console.log(error)

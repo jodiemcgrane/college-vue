@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-24T16:50:35+00:00
-@Last modified time: 2021-04-13T14:59:02+01:00
+@Last modified time: 2021-04-20T22:58:31+01:00
 -->
 <template>
 <div class="delete-enrolment-modal">
@@ -22,7 +22,7 @@
 
     <b-row class="justify-content-center">
         <b-button class="delete-modal-button" @click="hide();" variant="light">Cancel</b-button>
-        <b-button class="cancel-modal-button" @click="deleteEnrolment(); hide();" variant="danger">Delete</b-button>
+        <b-button class="cancel-modal-button" @click="deleteEnrolment();" variant="danger">Delete</b-button>
     </b-row>
 
   </b-modal>
@@ -52,6 +52,9 @@ export default {
     hide() {
       this.$refs.deleteEnrolmentModal.hide();
     },
+    getEnrolments() {
+      this.$emit("get-enrolments");
+    },
     deleteEnrolment() {
       console.log(this.enrolmentId);
       let token = localStorage.getItem('token');
@@ -66,6 +69,8 @@ export default {
           this.$router.replace({
             name: 'enrolments_index'
           });
+          this.$refs.deleteEnrolmentModal.hide();
+          this.$emit("get-enrolments");
         })
         .catch(error => {
           console.log(error)

@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-16T19:00:03+00:00
-@Last modified time: 2021-04-17T20:23:35+01:00
+@Last modified time: 2021-04-20T22:38:28+01:00
 -->
 <template>
 <div>
@@ -98,6 +98,9 @@ export default {
     hide() {
       this.$refs.createEnrolmentModal.hide();
     },
+    getEnrolments() {
+      this.$emit("get-enrolments");
+    },
     createEnrolment() {
       let token = localStorage.getItem('token');
       axios.post('/enrolments', {
@@ -113,6 +116,8 @@ export default {
         })
         .then(response => {
           console.log(response.data);
+          this.$refs.createEnrolmentModal.hide();
+          this.$emit("get-enrolments");
         })
         .catch(error => {
           console.log(error)

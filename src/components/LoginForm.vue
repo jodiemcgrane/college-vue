@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-19T14:03:38+00:00
-@Last modified time: 2021-04-20T13:21:06+01:00
+@Last modified time: 2021-04-20T16:57:39+01:00
 -->
 <template>
 <b-row>
@@ -77,7 +77,6 @@ export default {
       form: {
         email: "",
         password: "",
-        submitStatus: null
       }
     }
   },

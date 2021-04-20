@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-04-20T14:33:34+01:00
+@Last modified time: 2021-04-20T22:56:25+01:00
 -->
 <template>
 <div class="courses-show">
@@ -13,7 +13,7 @@
           <b-card-text>
             <h2>{{ course.title }}</h2>
             <hr style="background-color: #fff; text-align: left; margin-left: 0">
-            
+
             <div class="d-flex mt-5 mb-4 align-items-center">
               <h5>Level: {{ course.level }}</h5>
               <span class="ml-auto">
@@ -73,7 +73,7 @@
     <b-col md="10">
       <b-card class="courses-show-card mt-5">
 
-        <CreateEnrolmentModal ref="CreateEnrolmentModal" />
+        <CreateEnrolmentModal v-on:get-enrolments="getEnrolments" ref="CreateEnrolmentModal" />
 
         <b-row>
           <b-col md="6" class="my-1">

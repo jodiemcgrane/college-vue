@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-17T15:50:57+00:00
-@Last modified time: 2021-04-17T20:03:03+01:00
+@Last modified time: 2021-04-20T22:47:25+01:00
 -->
 <template>
 <div class="courses-index">
@@ -21,9 +21,9 @@
 
   <b-card class="courses-card">
 
-    <CreateCourseModal ref="CreateCourseModal" />
+    <CreateCourseModal v-on:get-courses="getCourses" ref="CreateCourseModal" />
 
-    <DeleteCourseModal ref="DeleteCourseModal" :courseId="selectedCourse" />
+    <DeleteCourseModal v-on:get-courses="getCourses" ref="DeleteCourseModal" :courseId="selectedCourse" />
 
     <b-row class="mb-4">
       <b-col md="6" class="my-1">
@@ -41,7 +41,7 @@
       </b-col>
     </b-row>
 
-    <b-table id="courses-table" hover :busy="isBusy" :items="filteredCourses" :fields="fields" :per-page="perPage" :current-page="currentPage" responsive="sm">
+    <b-table id="courses-table" ref="courseTable" hover :busy="isBusy" :items="filteredCourses" :fields="fields" :per-page="perPage" :current-page="currentPage" responsive="sm">
 
       <template #table-busy>
         <div class="text-center">
