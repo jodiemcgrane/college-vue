@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-06T13:26:11+00:00
-@Last modified time: 2021-04-20T14:41:13+01:00
+@Last modified time: 2021-04-21T01:15:13+01:00
 -->
 <template>
 <div class="enrolments-show">
@@ -113,7 +113,7 @@
               <b-row>
                 <b-col class="my-1">
                   <div class="d-flex">
-                    <b-button to="/courses" pill variant="primary" btn-sm>View All</b-button>
+                    <b-button to="/courses" class="view-all-button center" pill variant="primary" btn-sm>View All</b-button>
                   </div>
                 </b-col>
 
@@ -121,18 +121,12 @@
                   <b-button @click="showUpdateCourseModal()" class="mr-2" variant="warning" size="sm">
                     <b-icon icon="pencil-square" font-scale="1.6" style="color: #fff"></b-icon>
                   </b-button>
-
-                  <b-button @click="showDeleteCourseModal(enrolment.course.id)" variant="danger" size="sm">
-                    <b-icon icon="trash" font-scale="1.6" style="color: #fff"></b-icon>
-                  </b-button>
                 </b-col>
               </b-row>
             </div>
           </template>
 
           <UpdateCourseModal ref="UpdateCourseModal" :updateCourseData="course" />
-
-          <DeleteCourseModal ref="DeleteCourseModal" :courseId="selectedCourse" />
 
         </b-card-text>
       </b-card>
@@ -166,7 +160,7 @@
               <b-row>
                 <b-col class="my-1">
                   <div class="d-flex">
-                    <b-button to="/lecturers" pill variant="primary" btn-sm>View All</b-button>
+                    <b-button to="/lecturers" class="view-all-button center" pill variant="primary" btn-sm>View All</b-button>
                   </div>
                 </b-col>
 
@@ -174,18 +168,12 @@
                   <b-button @click="showUpdateLecturerModal()" class="mr-2" variant="warning" size="sm">
                     <b-icon icon="pencil-square" font-scale="1.5" style="color: #fff"></b-icon>
                   </b-button>
-
-                  <b-button @click="showDeleteLecturerModal(enrolment.lecturer.id)" variant="danger" size="sm">
-                    <b-icon icon="trash" font-scale="1.5" style="color: #fff"></b-icon>
-                  </b-button>
                 </b-col>
               </b-row>
             </div>
           </template>
 
           <UpdateLecturerModal ref="UpdateLecturerModal" :updateLecturerData="lecturer" />
-
-          <DeleteLecturerModal ref="DeleteLecturerModal" :lecturerId="selectedLecturer" />
 
         </b-card-text>
       </b-card>
@@ -200,10 +188,8 @@ import UpdateEnrolmentModal from '@/components/UpdateEnrolmentModal.vue'
 import DeleteEnrolmentModal from '@/components/DeleteEnrolmentModal.vue'
 
 import UpdateCourseModal from '@/components/UpdateCourseModal.vue'
-import DeleteCourseModal from '@/components/DeleteCourseModal.vue'
 
 import UpdateLecturerModal from '@/components/UpdateLecturerModal.vue'
-import DeleteLecturerModal from '@/components/DeleteLecturerModal.vue'
 
 import axios from '@/config/api';
 
@@ -213,9 +199,7 @@ export default {
     UpdateEnrolmentModal,
     DeleteEnrolmentModal,
     UpdateCourseModal,
-    DeleteCourseModal,
     UpdateLecturerModal,
-    DeleteLecturerModal,
   },
   data() {
     return {
@@ -245,16 +229,8 @@ export default {
     showUpdateCourseModal() {
       this.$refs.UpdateCourseModal.show();
     },
-    showDeleteCourseModal(courseId) {
-      this.selectedCourse = courseId;
-      this.$refs.DeleteCourseModal.show();
-    },
     showUpdateLecturerModal() {
       this.$refs.UpdateLecturerModal.show();
-    },
-    showDeleteLecturerModal(lecturerId) {
-      this.selectedLecturer = lecturerId;
-      this.$refs.DeleteLecturerModal.show();
     },
     getEnrolment() {
       let token = localStorage.getItem('token');
@@ -269,7 +245,6 @@ export default {
           this.enrolment = response.data.data;
           this.course = response.data.data.course;
           this.lecturer = response.data.data.lecturer;
-
         })
         .catch(error => {
           console.log(error)
@@ -305,5 +280,10 @@ export default {
   box-shadow: 0 6px 8px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
   transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
   padding: 14px 36px 18px 36px;
+}
+
+.view-all-button {
+  height: 40px;
+  width: 70%;
 }
 </style>
